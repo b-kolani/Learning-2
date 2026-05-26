@@ -1,0 +1,34 @@
+Tensor Processing Unit
+C'est une puce spécialiée créée par Google pour accélerer les calculs d'IA.
+
+Comparaison CPU/GPU/TPU
+
+| Type | Utilisation principale          |
+| ---- | ------------------------------- |
+| CPU  | tâches générales                |
+| GPU  | graphismes + IA                 |
+| TPU  | IA/deep learning ultra optimisé |
+
+Pourquoi les TPUs existent ?
+Les réseaux neuronaux font énormément de calculs matriciels:
+- multiplication de matrices 
+- opérations sur tenseurs 
+- attention des Transformers 
+
+Les TPUs sont construits spécialement pour ça 
+
+Exemple:
+Quand un modèle comme GPT traite:
+    "Bonjour"
+il effectue des milliards d''opérations sur des tenseurs
+
+Un TPU peut faire ces calculs beaucoup plus vite et avec moins d'énergie.
+
+Où on utilise les TPU ?
+Principalement:
+- entraînement de gros modèles IA 
+- inference rapide 
+- services cloud 
+
+Exemple:
+- Google Cloud TPU 
