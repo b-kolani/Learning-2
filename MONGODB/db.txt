@@ -1,0 +1,93 @@
+Dans MongoDB, il y a une hiérarchie:
+Database
+ └── Collections
+       └── Documents
+
+1. Base de données (Database)
+La base de données est le conteneur principal.
+Elle regroupe plusieurs collections. 
+Exemple:
+    shopDB 
+Cette base peut contenir:
+- utilisateurs 
+- produits
+- commandes 
+- messages 
+
+2. Collection 
+    Une collection est un groupe de documents similaires.
+
+    Exemple dans shopDB:
+        users 
+        products 
+        orders 
+    Chaque collection contient un type de données. 
+
+3. Document 
+    Le document est l'information réelle stockée.
+
+    Exemple dans la collection users:
+
+    </> JavaScript
+
+    {
+        name: "Ali" ,
+        age: 20,
+        email: "ali@gmail.com"
+    }
+
+    Un autre document:
+    </> JavaScript
+    {
+        name: "Sara",
+        age; 22
+    }
+
+Visualisation complète
+
+Database: shopDB
+|
+|-- Collection: users
+|      |-- Document 1
+|      |-- Document 2
+|
+|-- Collection: products
+       |-- Document 1
+       |-- Document 2
+
+Comparaison avec SQL 
+| MongoDB    | SQL      |
+| ---------- | -------- |
+| Database   | Database |
+| Collection | Table    |
+| Document   | Row      |
+| Field      | Column   |
+
+Exemple réel 
+Base de données
+    ecommerce 
+Collections 
+    users 
+    products
+    orders 
+Documents dans products
+    </> JavaScript
+    {
+        name: "Laptop",
+        price: 5000
+    }
+    </> JavaScript
+    {
+        name: "Mouse",
+        price: 150
+    }
+
+Résumé ultra simple 
+- Database -> grand conteneur
+- Collection -> groupe de documents 
+- Document -> donnée individuelle 
+
+Comme:
+    Bibliothèque -> Étagère -> Livre 
+ou:
+    Dossier -> Sous-dossier -> Fichier

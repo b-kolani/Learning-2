@@ -1,0 +1,120 @@
+Kubernetes (souvent appelé K8s) est une plateforme qui sert 
+à gérer automatiquement des conteneurs comme ceux créés avec 
+Docker. 
+
+LE problème que Kubernetes résout
+Imaginons qu'on ait:
+- un backend Node.js 
+- une base PostgreSQL 
+- un frontend React 
+- plusieurs utilisateurs 
+Avec Docker seul, on peut lancer des conteneurs.
+Mais quand notre application devient grande:
+- certains conteneurs crashent
+- il faut plusieurs copies du backend
+- il faut répartir le trafic 
+- il faut mettre à jour sans couper le service 
+- il faut lancer les services sur plusieurs machines 
+
+Ça devient difficile à gérer manuellement 
+
+C'est là que Kubernetes intervient.
+
+Ce que fait Kubernetes
+Kubernetes:
+- démarre les conteneurs
+- les surveille 
+- les redémarre s'ils crashent
+- répartit la charge 
+- scale automatiquement
+- gère le réseau entre services 
+- fait des mises à jour sans downtime 
+
+Architecture simple 
+1. Cluster 
+    Un ensemble de machines.
+2. Node 
+    Une machine dans le cluster.
+    Il existe:
+        - master/control plane 
+        - worker nodes 
+    
+Les objets importants 
+Pod 
+L'unité de base dans Kubernetes.
+Un pod contient un ou plusieurs conteneurs.
+Exemple:
+    Pod
+     └── Container Node.js
+    
+Deployment 
+    Décrit combien de copies de notre application 
+    doivent tourner.
+
+Exemple:
+    3 copies du backend
+
+Si un pod meurt:
+    Kubernetes le recrée automatiquement 
+
+Service 
+Expose les pods sur le réseau. 
+Par exemple:
+    frontend + backend 
+sans connaître l'IP exacte des pods.
+
+Exemple concret 
+On a:
+- frontend React 
+- backend Fastify 
+- PostgreSQL
+Kubernetes peut: 
+- lancer 3 backends 
+- relancer un backend crashé 
+- répartir les requêtes 
+- mettre à jour le backend sans arrêter le site 
+
+Différence Docker vs Kubernetes
+| Docker              | Kubernetes                  |
+| ------------------- | --------------------------- |
+| Crée les conteneurs | Orchestre les conteneurs    |
+| Lance une app       | Gère des centaines/milliers |
+| Simple              | Plus complexe               |
+| Une machine souvent | Plusieurs machines          |
+
+Docker = fabriquer le conteneur
+Kubernetes = gérer toute l'infrastructure 
+
+Exemple YAML Kubernetes
+</> YAML
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 3
+
+  template:
+    spec:
+      containers:
+        - name: api
+          image: my-api:latest
+    
+Ici:
+- replicas: 3
+    -> Kubernetes garde toujours 3 copies
+
+Pourquoi Kubernetes est populaire 
+Parce qu'il est utilisé partout:
+- cloud 
+- DevOps 
+- microservicves 
+- grandes applications 
+- IA/ML infrastructures 
+
+Des entreprises comme 
+- Google 
+- Netflix 
+- Spotify 
+- OpenAI 
+utilisent des systèmes similaires d'orchestration.

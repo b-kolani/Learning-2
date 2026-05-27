@@ -1,0 +1,22 @@
+mongosh est le shell officiel de MongoDB.
+
+Cést un terminal interactif qui permet de:
+- se connecter à MongoDB,
+- créer des bases de données,
+- ajouter des documents,
+- faire des requêtes,
+- administrer MongoDB.
+
+Un peu comme:
+- psql pour PostgreSQL,
+- ou le terminal SQL MySQL.
+
+Important 
+Installer mongosh seul ne suffit pas 
+forcément.
+
+On doit aussi avoir:
+- soit un serveur MongoDB installé localement,
+- soit une base distante (MongoDB Atlas par exemple).
+
+

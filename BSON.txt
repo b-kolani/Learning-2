@@ -1,0 +1,59 @@
+Dans MongoDB, BSON signifie:
+    Binary JSON
+C'est une version binaire du JSON utilisée par 
+MongoDB pour stocker les documents.
+
+JSON classique
+    {
+        "name": "Ali",
+        "age": 20
+    }
+    Le JSON est du texte lisible par l'humain.
+
+BSON 
+MongoDB convertit ce JSON en format binaire interne pourL
+- être plus rapide à lire/écrire 
+- mieux stocker les données 
+- supporter plus de types de données
+On ne voit généralement pas directement le BSON, car 
+mongosh l'affiche sous forme JSON lisible.
+
+Types suppplémentaires supportés par BSON
+Le JSON normal ne connaît que:
+- string
+- number 
+- boolean
+- array 
+- object 
+Le BSON ajoute des types utiles:
+| Type BSON     | Exemple             |
+| ------------- | ------------------- |
+| ObjectId      | identifiant MongoDB |
+| Date          | date/heure          |
+| Binary Data   | fichiers binaires   |
+| Int32 / Int64 | entiers             |
+| Decimal128    | nombres précis      |
+| Boolean       | true/false          |
+
+Exemple BSON dans MongoDB
+{
+  _id: ObjectId("685f4c..."),
+  name: "Ali",
+  createdAt: ISODate("2026-05-27T10:00:00Z")
+}
+Ici:
+- ObjectId(...)
+- ISODate(...)
+sont des types BSON spéciaux. 
+
+Pourquoi MongoDB utilise BSON ?
+Parce que BSON:
+- est plus performant pour les machines
+- permet des recherches rapides 
+- supporte plus de types que JSON
+- facilite le stockage des gros documents 
+
+Résumé simple 
+- JSON = format texte lisible 
+- BSON = version binaire optimisée utilisée par MongoDB
+- MongoDB stocke les documents en BSON en interne 
