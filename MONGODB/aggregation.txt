@@ -1,0 +1,160 @@
+Dans MongoDb, une aggregation (agrégation) est une 
+façon de traiter et transformer plusieurs documents 
+pour produire un résultat plus complexe.
+
+C'est un peu comme faire:
+- des statistiques,
+- des regroupements,
+- des calculs,
+- des tris,
+- des filtres avancés,
+- des transformations de données.
+
+Exemple simple 
+Imaginons cette collection orders: 
+    </> JSON
+    {"product": "PC", "price": 1000, "city": "Casablanca"}
+    {"product": "Mouse", "price": 50, "city": "Casablanca"}
+    {"product": "Screen", "price": 300, "city": "Rabat"}
+
+On veut connaître:
+ le total des ventes par ville.
+
+Pipeline d'agrégation
+
+MongoDB utilise un pipeline.
+
+Chaque étape transforme les données.
+
+    </> JavaScript
+    db.orders.aggregate([
+        {
+            $group: {
+                _id: "$city",
+                total: { $sum: "$price" }
+            }
+        }
+    ])
+
+Résultat 
+    </> JSON 
+    { "_id": "Casablanca", "total": 1050 }
+    { "_id": "Rabat", "total": 300 }
+
+Explication
+ aggregate()
+Lance une agrégation.
+
+$group 
+Regroupe les documents.
+    </> JavaScript
+    _id: "$city"
+-> grouper par ville. 
+
+$sum 
+Additionne des valeurs.
+    </> JavaScript
+    total: { $sum: "$price" }
+-> additionner tous les price. 
+
+Pourquoi "pipeline" ?
+Parce que les données passent par plusieurs étapes,
+comme dans un tuyau.
+
+Exemple:
+    documents -> filtre -> groupement -> tri -> résultat 
+
+Stages importants
+$match
+Filtrer des document.
+    </> JavaScript
+    {
+        $match: { city: "Casablanca" }
+    }
+
+    Equivalent à un find()
+
+$group 
+Regrouper des données.
+
+$sort 
+Trier:
+    </> JavaScript:
+    {
+        $sort: { price: -1 }
+    }
+    - 1 -> croissant
+    - -1 -> décroissant 
+
+$project 
+Choisir/modifier les champs.
+    </> JavaScript
+    {
+        $project: {
+            name: 1,
+            totalWithtax: { 4multiply: ["$price", 1.2 ] }
+        }
+    }
+
+$limit 
+Limiter le nombre de résultats 
+    </> JavaScript
+    {
+        $limit: 5
+    }
+
+Exemple complet 
+    </> JavaScript
+    db.orders.aggregate([
+        {
+            $match: { city: "Casablanca" }
+        }
+    ])
+
+    Exemple complet 
+    </> JavaScript
+    db.orders.aggregate([
+  {
+    $match: { city: "Casablanca" }
+  },
+  {
+    $group: {
+      _id: "$product",
+      totalSales: { $sum: "$price" }
+    }
+  },
+  {
+    $sort: { totalSales: -1 }
+  }
+])
+
+Comparaison SQL 
+En SQL:
+    </> SQL 
+    SELECT city, SUM(price)
+    FROM orders 
+    GROUP BY city; 
+En MongoDB:
+    </> JavaScript
+    db.orders.aggregate([
+        {
+            $group: {
+                _id: "$city",
+                total: { $sum: "$price" }
+            }
+        }
+    ])
+
+Résumé
+
+Une agrégation sert à :
+
+analyser des données,
+faire des calculs,
+regrouper des documents,
+transformer les résultats,
+produire des statistiques.
+
+C’est l’outil le plus puissant 
+de MongoDB pour travailler avec 
+beaucoup de données.
