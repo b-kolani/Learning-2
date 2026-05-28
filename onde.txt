@@ -1,0 +1,65 @@
+Un onde (ou wave en anglais) est une 
+perturbation qui se propage d'un endroit 
+à un autre en transportant de l'énergie,
+sans transporter toute la matière avec elle.
+
+Exemple simple: vague sur l'eau 
+Quand on jette une pierre dans l'eau:
+- des vagues se forment,
+- elles se déplacent vers l'extérieur,
+- mais l'eau ne part pas entièrement avec 
+la vague. 
+
+L'énergie se propage, pas toute la matière.
+
+C'est ça une onde.
+
+Autres exempls d'ondes 
+- le son dans l'air 
+- les vagues de la mer,
+- la lumiere,
+- le Wi-Fi,
+- les signaux radio.
+
+Deux grands types d'ondes 
+1. Ondes mécaniques 
+Elles ont besoin d'un milieu matériel pour se 
+propager. 
+
+Exemples:
+- son -> air 
+- vagues -> eau 
+- vibrations -> corde 
+
+2. Ondes électromagnétiques 
+Elles n'ont pas besoin de matière.
+Elles peuvent voyager dans le vide.
+
+Exemples:
+- lumière,
+- ondes radio,
+- Wi-Fi,
+- rayons X.
+
+Caractéristiques importantes d'une onde 
+
+Fréquence 
+Nombre d'oscillations par second.
+Plus la fréquence est élevée:
+- plus l'onde "vibre" vite.
+
+Longueur d'onde 
+Distance entre deux "crêtes" de l'onde.
+
+Amplitude 
+Taille ou intensité de l'onde.
+
+Exemple:
+- son fort -> grande amplitude.
+
+Visualisation simple
+Une onde ressemble souvent à ceci:
+
+~ ~ ~ ~ ~ 
+où la perturbation avance progressivement.
+

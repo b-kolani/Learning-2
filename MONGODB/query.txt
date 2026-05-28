@@ -1,0 +1,83 @@
+Dans MongoDB, une query (requête) est une instruction 
+qu'on envoie à la base de données pour:
+- rechercher des données
+- ajouter des données,
+- modifier des données,
+- ou supprimer des données.
+Le plus souvent, quand on parle de "query", on parle 
+d'une recherche de documents.
+
+Exemple simple 
+imaginons une collection users:
+    </> JSON 
+    {
+        "name": "Ali",
+        "age": 20
+    }
+Query pour trouver tous les utilisateurs
+    </> JavaScript 
+    db.users.find()
+- db -> la base de données 
+- users -> la collection
+- find() -> chercher des documents 
+
+Query avec condition 
+Trouver les utilisateurs ayant 20 ans:
+    </> JavaScript
+    db.users.find({ age: 20 })
+
+Ici:
+    </> JavaScript
+    { age: 20 }
+    est le query condition.
+MongoDB va chercher tous les documents où 
+age vaut 20. 
+
+Autres exemples 
+Trouver un seul document 
+    </> JavaScript
+    db.users.findOne({ name: "Ali" })
+
+Ajouter un document
+    </> JavaScript
+    db.users.insertOne({
+        name: "Sara",
+        age: 22
+    })
+
+Modifier un document
+    </> JavaScript
+    db.users.updateOne(
+        { name: "Ali" },
+        { $set: { age: 21 } }
+    )
+
+Supprimer un document 
+    </> JavaScript
+    db.users.deleteOne({ name: "Ali" })
+
+Pourquoi on appelle ça "query" ?
+Parce que on "interroge" la base de données.
+
+On pose une question comme:
+    "Donne-moi tous les utilisateurs de 20 ans."
+MongoDB lit alors les documents et renvoie ceux 
+qui correspondent.
+
+Comparaison avec SQL 
+En SQL:
+    </> SQL 
+    SELECT * FROM users WHERE age = 20;
+
+En MongoDB:
+    </> JavaScript
+    db.users.find({ age: 20 })
+
+BSON et query
+MongoDB stocke les données en BSON (Binary JSON).
+
+Les queries utilisent une syntaxe ressemblant à 
+du JSON:
+    </> JavaScript
+    { age: 20 }
+    mais en interne MongoDB travaille avec du BSON.

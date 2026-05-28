@@ -1,0 +1,70 @@
+Les ondes électromagnétiques sont des ondes 
+qui transportent de l'énergie à travers l'espace 
+grâce à des champs:
+- électrique 
+- et magnétique 
+qui oscillent ensemble.
+
+Elles peuvent voyager:
+- dans l'air,
+- dans le vide,
+- ou dans certains matériaux.
+
+La lumière du Soleil, le Wi-Fi, la radio, le Bluetooth 
+et les rayons X sont tous des ondes électromagnétiques.
+
+Idée simple 
+Imaginons qu'on crée une perturbation invisible qui 
+se propage dans l'espace, un peu comme des vagues sur 
+l'eau.
+
+Sauf qu'ici:
+- ce ne sont pas des vagues d'eau,
+- mais des variations de champs électriques 
+et magnétiques.
+
+Ces deux champs se créent mutuellement:
+- un champ électrique variable crée un 
+champ magnétique,
+- un champ magnétique variable crée un 
+champ électrique,
+- ce qui permet à l'onde de continuer à 
+avancer.
+
+Elles voyagent très vite 
+Les ondes électromagnétiques voyagent à la 
+vitesse de la lumière:
+ ≈ 300 000 km/s 
+C'est pour cela qu'un signal radio ou Wi-Fi 
+arrive presque instantanément.
+
+Exemples d'ondes électromagnétiques
+Voici différentes catégories, classées par 
+fréquence:
+| Type            | Exemple                            |
+| --------------- | ---------------------------------- |
+| Ondes radio     | Radio FM, télévision               |
+| Micro-ondes     | Wi-Fi, Bluetooth, four micro-ondes |
+| Infrarouge      | Télécommandes                      |
+| Lumière visible | Ce que nos yeux voient             |
+| Ultraviolet     | Soleil                             |
+| Rayons X        | Radiographie                       |
+| Rayons gamma    | Radioactivité                      |
+
+Tout cela fait partie du spectre électromagnétique.
+
+Relation fréquence / énergie 
+- Fréquence basse -> moins d'énergie 
+- Fréquence haute -> plus d'énergie 
+
+Exemple 
+- les ondes radio ont peu d'énergie,
+- les rayons X ont beaucoup d'énergie.
+
+Dans les appareils 
+Quand notre téléphone utilise:
+- le Wi-Fi,
+- la 4G/5G,
+- le Bluetooth
+il envoie et reçoit des ondees électromagnétiques
+pour transmettre des informations sous forme de signaux.

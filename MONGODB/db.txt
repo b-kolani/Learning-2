@@ -91,3 +91,6 @@ Comme:
     Bibliothèque -> Étagère -> Livre 
 ou:
     Dossier -> Sous-dossier -> Fichier
+
+À retenir: EN MongoDB, une collection n'existe pas 
+ou n'est créée que lorsqu'elle a du contenu 

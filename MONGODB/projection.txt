@@ -1,0 +1,101 @@
+Dans MongoDB, une projection sert à choisir 
+quels champs on veut récupérer dans le résulat 
+d'une query. 
+
+Sans projection, MongoDB renvoie tout le document 
+
+Exemple sans projection
+
+Document:
+
+    </> JSON 
+    {
+        "name": "Ali",
+        "age": 20,
+        "email": "ali@gmail.com",
+        "city": "Casablanca"
+    }
+
+Query:
+
+    </> JavaScript
+    db.users.find({ name: "Ali" })
+    
+Résultat:
+    </> JSON 
+    {
+        "_id": objectId("..."),
+        "name": "Ali",
+        "age": 20,
+        "email": "ali@gmail.com",
+        "city": "Casablanca"
+    }
+MongoDB renvoie tout.
+
+Avec projection
+Si on veut seulement name et age:
+    </> JavaScript
+    db.users.find(
+        { name: "Ali" },
+        { name: 1, age: 1 }
+    )
+
+    Résultat:
+    </> JSON 
+    {
+        "_id": objectId("..."),
+        "name": "Ali",
+        "age": 20
+    }
+
+Que signifie 1 ?
+- 1 -> inclure le champ 
+- 0 -> exclure le champ 
+
+Eexclure un champ 
+    </> JavaScript
+    db.users.find(
+        {},
+        { email: 0 }
+    )
+    Ici:
+    - tous les champs seront renvoyés 
+    - sauf email
+
+Le cas spécial de _id 
+MongoDB ajoute automatiquement _id.
+Même si on inclut certains champs, _id reste 
+affiché:
+    </> JavaScript
+    db.users.find(
+        {},
+        { name: 1 }
+    )
+    Résultat:
+    </> JSON
+    {
+        "_id": objectId("..."),
+        "name": "Ali"
+    }
+
+    Pour cacher _id :
+    db.users.find(
+        {},
+        { name: 1, _id: 0 }
+    )
+
+Résumé 
+Une projection sert à:
+- réduire les données renvoyées,
+- améliorer les performances 
+- éviter dénvoyer des informations inutiles.
+
+Structure générale 
+    </> JavaScript
+    db.users.find(
+        { age: 20 },
+        { name: 1, _id: 0 }
+    )
+- Query -> filtre les documents 
+- Projection -> chosit les champs affichés 
+

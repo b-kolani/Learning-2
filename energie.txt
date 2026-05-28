@@ -1,0 +1,31 @@
+C'est quoi l'énergie ?
+L'énergie est la capacité de produire 
+un effet ou un changement.
+
+Par exemple, l'énergie permet:
+- de bouger,
+- chauffer,
+- éclairer,
+- faire fonctionner des appareils,
+- produire du son,
+- transmettre des informations.
+
+Sans énergie, rien ne se passe.
+
+Exemples simples 
+- Une batterie contient de l'énergie électrique.
+- Le Soleil émet de l'énergie lumineuse et thermique. 
+- Quand on court, notre corps utilise de l'énergie 
+chimique provenant de la nourriture.
+- Une balle qui roule possède de l'énergie de mouvement. 
+
+Quelques types d'énergie 
+| Type               | Exemple              |
+| ------------------ | -------------------- |
+| Énergie cinétique  | Objet en mouvement   |
+| Énergie thermique  | Chaleur              |
+| Énergie électrique | Courant électrique   |
+| Énergie chimique   | Batterie, nourriture |
+| Énergie lumineuse  | Lumière              |
+| Énergie nucléaire  | Réactions nucléaires |
+

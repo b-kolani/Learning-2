@@ -1,0 +1,46 @@
+C'est quoi un champ ?
+Un champ est une région de l'espace où une 
+force peut agir.
+
+Autrement dit:
+    un champ indique comment quelque chose 
+    influence son environnement autour de lui.
+
+Exemple simple: champ gravitationnel 
+La Terre attire les objets vers elle.
+
+Même sans toucher un objet, elle exerce une 
+force à distance. 
+
+Autour de la Terre existe donc un champ gravitationnel.
+C'est ce qui fait tomber les objets.
+
+Champ électrique
+Une charge électrique peut attirer ou repousser 
+d'autres charges.
+
+Elle crée autour d'elle un champ électrique. 
+
+Exemple:
+- un ballon frotté contre les cheveux peut 
+attirer des petits papiers.
+
+Champ magnétique
+Les aimants créent un champ magnétique.
+
+C'est ce qui attire certaines métaux.
+
+Exemple:
+- un aimant attire le fer sans le toucher.
+
+Lien avec les ondes électromagnétiques
+Dans une onde électromagnétique:
+- le champ électrique change,
+- le champ magnétique change aussi,
+- et ces variations se propagent dans l'espace.
+
+C'est ce qui permet:
+- la lumière,
+- le Wi-Fi,
+- la radio,
+- le Bluetooth, etc.

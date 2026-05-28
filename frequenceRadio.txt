@@ -1,0 +1,42 @@
+La fréquence radio d'un système ou d'un 
+appareil, c'est la fréquence des ondes 
+électromagnétiques qu'il utilise pour 
+émettre ou recevoir des signaux sans fil. 
+
+Elle se mesure en Hertz (Hz):
+- 1 Hz = 1 oscillation par seconde 
+- 1 kHz = 1 000 Hz 
+- 1 MHz = 1 million de Hz 
+- 1 GHz = 1 milliard de Hz 
+Par exemple:
+- La radio FM utilise environ 88 MHz à 108 MHz 
+- Le Wif-Fi peut utiliser 2,4 GHz ou 5 GHz 
+- Le Bluetooth utilise environ 2,4 GHz
+- Les réseaux mobiles 4G/5G utilisent 
+différentes bandes de fréquences
+
+Plus simplement, la fréquence indique à 
+quelle vitesse l'onde "vibre".
+
+On peut imaginer:
+- une fréquence basse -> grandes vagues lentes 
+- une fréquence haute -> petites vagues rapides 
+
+La fréquence influence plusieurs choses:
+- la portée du signal 
+- la vitesse de transmission 
+- la capacité à traverser les murs 
+- les interférences 
+
+Exemple:
+- Le Wi-Fi 2,4 GHz traverse mieux les murs 
+mais est plus lent 
+- Le Wi-Fi 5 GHz est plus rapide mais porte 
+moins loin 
+
+Dans un appareil électronique, quand on parle 
+de "fréquence radio", cela peut désigner:
+- la fréquence à laquelle il communique
+- la bande radio qu'il supporte 
+- ou le circuit RF ("Radio Frequency") utilisé 
+pour les communications sans fil.
