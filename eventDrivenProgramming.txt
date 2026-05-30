@@ -1,0 +1,92 @@
+La programmation evenementielle (event-driven programming) est un 
+style de programmation ou le programme attend des evenements puis 
+execute du code lorsqu'ils se produisent.
+
+Un evenement peut etre:
+- Un clic de souris 
+- Une touche du clavier 
+- La reception d'un message reseau 
+- L'arrivee d'une requete HTTP
+- Un timer qui expire 
+- Une action d'un utilisateur
+
+Exemple simple:
+Au lieu d'ecrire:
+    </> C++
+    cout << "Clique sur le bouton" << endl;
+    // Le programme continue directement 
+On ecrit:
+    </> C++
+    button.onClick(maFonction)
+et:
+    </> C++ 
+    void maFonction()
+    {
+        cout << "Bouton clique !" << endl;
+    }
+Ici, maFonction() n'est executee que lorsque l'utilisateur 
+clique sur le bouton 
+
+Comment ca fonctionne ?
+Generalement, il y a une boucle d'evenements (event loop):
+    tant que le programme tourne:
+        attendre un evenement
+        traiter l'evenement
+Par exemple:
+    </> C++
+    while (running)
+    {
+        Event e = attendreEvenement();
+
+        if (e.type == CLICK)
+            gererClick();
+
+        if (e.type == KEYBOARD)
+            gererClavier();
+    }
+
+Exemples de technologies utilisant ce modele;
+- Node.js 
+- React 
+- SDL2
+- SFML 
+- Les interfaces graphiques (Qt, GTK, Windows API)
+- Les jeux video 
+- Les serveurs Web 
+
+Exemple avec SDL2 
+    </> C++ 
+    SDL_Event event;
+
+    while (SDLPollEvent(&event))
+    {
+        if (event.type == SDL_QUIT)
+            running = false;
+
+        if (event.type == SDL_KEYDOWN)
+            cout << "Touche appuyee" << endl;
+    }
+
+    Ici:
+        - L'utilisateur appuie sur une touche -> evenement SDL_KEYDOWN
+        - Il ferme la fenetre -> evenement SDL_QUIT
+    Le programme reagit a ces evenements 
+
+Exemple avec Node.js 
+    </> JavaScript 
+    server.on('request', (req, res) =. {
+        res.end('Bonjour');
+    });
+    Quand une requete HTTP arrive, l'evenement request est declenche 
+    et la fonction est executee.
+
+Pourquoi c'est utile ?
+- Tres adapte aux interfaces graphiques 
+- Permet de gerer de nombreux utilisateurs ou connexions 
+- Evite de faire tourner le processeur inutilement en attendant une action 
+- C'est la base de nombreux frameworks modernes 
+
+En resume, la programmation evenementielle consiste a definir des actions 
+(gestionnaires d'evenements) qui seront executees lorsqu'un evenement 
+particulier se produit, plutot que d'executer les instructions dans un 
+ordre strictement lineaire.
