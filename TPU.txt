@@ -20,7 +20,7 @@ Les TPUs sont construits spécialement pour ça
 Exemple:
 Quand un modèle comme GPT traite:
     "Bonjour"
-il effectue des milliards d''opérations sur des tenseurs
+il effectue des milliards d'opérations sur des tenseurs
 
 Un TPU peut faire ces calculs beaucoup plus vite et avec moins d'énergie.
 

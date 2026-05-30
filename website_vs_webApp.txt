@@ -1,0 +1,43 @@
+Il y a une difference, meme si les duex utilisent souvent 
+les memes technologies 
+
+Dynamic Website (sit web dynamique)
+Un site web dynamique genere son contenu a partir de donnees 
+ou d'une logique cote serveur .
+
+Exemples;
+- Wikipedia
+- Un bog avec des articles stockes dans une base de donnees.
+- Un site d'actualites.
+Caracteristiques:
+- Principalement destine a afficher du contenu 
+- Les utilisateurs consomment surtout de l'information
+- Le contenu peut changer selon les donnees de la base de donnees
+
+Exemple:
+Un site d'actualites ou les journalistes ajoutent des articles 
+et les visiteurs les lisent.
+
+Web Application (application web)
+Une application web est concue pour permettre a l'utilisateur d'effetcuer 
+des taches ou d'intergir fortement avec le systeme 
+
+Exemples:
+- Gmail 
+- Google Docs
+- Trello 
+Caracteristiques:
+- Forte interaction utilisateur.
+- Gestion d'etats, d'authentification, de donnees utilisateur.
+- Fonctionne souvent comme un logiciel accessible via un navigateur.
+Exemple:
+Une application de gestion de stock ou l'utilisateur 
+ajoute, modifie et supprime des produits.
+
+Comparaison rapide 
+| Site web dynamique                | Application web                            |
+| --------------------------------- | ------------------------------------------ |
+| Affiche principalement du contenu | Permet d'effectuer des tâches              |
+| Interaction limitée               | Interaction importante                     |
+| Blog, actualités, portfolio       | Gmail, Trello, inventaire, banque en ligne |
+| Centré sur l'information          | Centré sur les fonctionnalités             |

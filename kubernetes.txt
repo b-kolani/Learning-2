@@ -2,7 +2,7 @@ Kubernetes (souvent appelé K8s) est une plateforme qui sert
 à gérer automatiquement des conteneurs comme ceux créés avec 
 Docker. 
 
-LE problème que Kubernetes résout
+Le problème que Kubernetes résout
 Imaginons qu'on ait:
 - un backend Node.js 
 - une base PostgreSQL 

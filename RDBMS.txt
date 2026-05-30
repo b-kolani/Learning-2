@@ -1,0 +1,43 @@
+Relational Database Management System 
+Systeme de Gestion de Base de Donnees Relationnelle (SGBDR)
+Fait reference a un logiciel qui permet de creer, stocker 
+et gerer des DB relationnelles 
+
+Exemples de RDBMS:
+- MySQL 
+- PostgreSQL 
+- SQLite 
+- Microsoft SQL Server 
+- Oracle Database
+
+Pourquoi "relationnelle" ?
+
+Parce que les donnees sont organisees en tables qui peuvent 
+etre reliees entre elles
+
+Par exemple:
+
+| id | nom  |
+| -- | ---- |
+| 1  | Ali  |
+| 2  | Sara |
+
+| id | user_id | produit |
+| -- | ------- | ------- |
+| 1  | 1       | PC      |
+| 2  | 2       | Souris  |
+
+Ici, user_id relie chaque commande a un utilisateur 
+
+Difference avec MongoDB 
+MongoDB n'est pas un RDBMS. C'est une base de donnees NoSSQL orientee 
+documents.
+- RDBMS -> tables, lignes, colonnes, SQL.
+- MongoDB -> collections, documents DSON/JSON 
+
+Par exemple:
+{
+  "name": "Ali",
+  "age": 25
+}
+Au lieu d'une ligne dans une table 

@@ -1,0 +1,3 @@
+PostgreSQL is a free open-source databse system that 
+supports both relational (SQL) and non-relational (JSON)
+queries.
