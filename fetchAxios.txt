@@ -1,0 +1,109 @@
+fetch, axios et d'autres outils similaires servent 
+a communiquer avec un serveur depuis une app.
+Par exemple, si notre frontend React doit recuperer 
+la liste des produits depuis notre backend Fastify ou 
+Expresss, il doit envoyer une requete HTTP.
+
+1. Fetch 
+fetch est l'API native de JavaScript pour effectuer des 
+requetes HTTP. 
+Exemples d'utilisation:
+- Recuperer des donnees (GET)
+- Envoyer un formulaire (POST)
+- Modifier des donnees (PUT, PATCH)
+- Supprimer des donnees (DELETE)
+
+FLux:
+React
+  |
+fetch()
+  |
+Backend (Fastify/Express)
+  |
+Base de données
+
+2. Axios 
+Axios est une bibliotheque externe qui fait la meme 
+chose que fetch, mais avec des fonctionnalites 
+supplementaires.
+Elle simplifie notamment:
+- la gestion des erreurs
+- l'aout automatique de headers 
+- les timeouts 
+- les intercepteurs (middleware cote client)
+- la transformation automatique des reponses JSON 
+
+3. Comparaison rapide 
+| Fonctionnalité          | fetch | axios |
+| ----------------------- | ----- | ----- |
+| Inclus dans JavaScript  | ✅     | ❌     |
+| Installation nécessaire | ❌     | ✅     |
+| Support JSON            | ✅     | ✅     |
+| Timeout intégré         | ❌     | ✅     |
+| Intercepteurs           | ❌     | ✅     |
+| Simplicité              | ✅     | ✅     |
+
+4. Quand utiliser Fetch ?
+Pour:
+- petits projets 
+- apprentissage 
+- projets simples React 
+- scripts JavaScript
+Par exemple:
+- Todo List 
+- Application meteo 
+- Petit dashboard
+
+5. Qaund utiliser Axios ?
+Pour:
+- apps professionnelles
+- authentification JWT 
+- projets avec beaucoup d'appels API 
+- gestion centralisee des requetes 
+Par exemple;
+- app d'inventaire 
+- e-commerce 
+- app bancaire 
+- reseau social 
+
+6. Dans une architecture moderne 
+On pourrait avoir:
+Frontend React
+    |
+    | Axios / Fetch
+    v
+Backend Fastify
+    |
+Prisma
+    |
+PostgreSQL
+
+ou 
+Frontend Next.js
+    |
+    | Axios / Fetch
+    v
+API REST
+    |
+MongoDB
+
+L'idee importante est que fetch et axios ne remplacent pas 
+le backend. Ils servent uniquement a envoyer des requetes HTTP 
+vers une API.
+
+7. Existe-t-il d'autres alternatives ?
+Oui:
+- TanStack Query (anciennement React Query)
+- SWR 
+- Appollo GraphQL client 
+- Relay 
+En React moderne, il est frequent d'utiliser:
+TanStack Query
+        +
+      Axios
+cat TanStack Query gere le cache, la synchronisation 
+et le rafraichissement automatique des donnees, tandis
+ qu'Axios effectue les requetes HTTP.
+
+Commencer par fetch puis passer a axios puis decouvrir TanStack Query
+est generalement une progression naturelle.

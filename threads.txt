@@ -1,0 +1,7 @@
+L'interet principal des threads: exploiter plusieurs 
+coeurs du processeur simultanement.
+Dans Node.js, worker_threads est donc le mecanisme 
+permettant d'executer du JavaScript sur plusieurs 
+threads et potentiellement sur plusieurs coeur, 
+alors que le code JavaScript classique s'execute 
+uniquement sur le thread principal associe a l'Event Loop.

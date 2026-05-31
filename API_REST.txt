@@ -1,0 +1,97 @@
+Dans ces schema:
+Frontend React
+      |
+   Axios
+      |
+Backend Fastify
+      |
+PostgreSQL
+
+et 
+
+Frontend Next.js
+      |
+   Axios
+      |
+API REST
+      |
+MongoDB
+
+Fastify peut lui-mem etre l'API REST.
+Une API REST n'est pas un logiciel particulier.
+C'est une facon d'organiser des routes HTTP.
+
+Par exemple avec Fastify:
+GET    /users
+GET    /users/1
+POST   /users
+PUT    /users/1
+DELETE /users/1
+Cet ensemble de routes constitue une API REST.
+Donc:
+- Fastify -> framework Node.js pour creer un serveur.
+- API RESTT -> style d'architecture pour exposer des donnees 
+via HTTP.
+
+C'est un peu comme:
+Fastify = l'outil de construction
+API REST = le type de bâtiment que tu construis
+
+On peut construire une API REST avec:
+- Fastify
+- Express 
+- NestJS
+- Hono 
+- ou meme le module HTTP natif de Node.js 
+
+Exemple complet:
+On suppose une app d'inventaire.
+
+Frontend React 
+L'utilisateur clique sur "Afficher les produits"
+React
+  |
+  | GET /products
+  v
+
+Backend Fastify
+GET /products
+Fastify recoit la requete.
+Fastify
+   |
+   | SELECT * FROM products
+   v
+PostgreSQL
+
+PostgreSQL renvoie les donnees
+</> JSON
+[
+  { "id": 1, "name": "Clavier" },
+  { "id": 2, "name": "Souris" }
+]
+
+Fastify retourne ce JSON au Frontend
+PostgreSQL
+    |
+Fastify
+    |
+Axios/Fetch
+    |
+React
+
+L'ensemble des routes:
+GET    /products
+POST   /products
+PUT    /products/:id
+DELETE /products/:id
+forme notre API REST.
+
+Il est utile de distinguer:
+Axios/Fetch  -> Client HTTP
+Fastify      -> Serveur HTTP
+API REST     -> Ensemble des endpoints exposés
+Prisma       -> ORM
+PostgreSQL   -> Base relationnelle
+MongoDB      -> Base documentaire
+Ce sont 5 couches differentes qui travaillent ensemble dans une
+application web moderne.
