@@ -1,0 +1,262 @@
+Pour comprendre un ord., il faut voir le CPU, le GPU, la RAM 
+et le stockage comme des composants qui collaborent.
+
+1. Qui communique avec qui ?
+Schematiquement:
+SSD/HDD
+   │
+   ▼
+  RAM
+   ▲
+   │
+CPU <------> GPU
+
+En realite, les connexions passent par le chipset, les controleurs 
+memoire et le bus PCIe, mais l'idee generale est:
+- Le CPU peut lire et ecrire dans la RAM 
+- Le GPU peut egalement acceder a la RAM (selon l'architecture) ou a 
+sa propre memoire video.
+- Le stockage (SSD/HDD) ne s'execute pas directement; il fournit les 
+donnees qui sont chargees en RAM. 
+
+Quand on lance un programme:
+1. Le programme est stocke sur le SSD 
+2. L'OS le copie dans la RAM 
+3. Le CPU lit les instructions depuis la RAM
+4. Le CPU execute les instructions.
+5. Si certaines taches doivent etre faites par le GPU (affichage, calcul 
+parallele, IA), le CPU envoie du travail au GPU 
+
+2. A quoi sert le CPU ?
+Le CPU (Central Processing Unit) est le cerveau generaliste de l'ord. 
+Il execute:
+- Le systeme d'exploitation 
+- Les programmes classiques 
+- La logique metier d'une application 
+- Les calculs sequentiels 
+- La gestion des fichiers
+- La gestion reseau 
+
+Par exemple dans le projet Cub3D:
+- Gestion des evenements clavier 
+- Calcul du raycasting 
+- Gestion des structures de donnees 
+- Chargement de la carte 
+Tout cela est generalement execute par le CPU 
+
+2. A quoi sert le GPU ?
+Le GPU (Graphics Processing Unit) est specialise dans les 
+calculs massivement paralleles.
+Il execute:
+- Le rendu 3D.
+- Les effets graphiques.
+- Les shaders.
+- Les calculs IA.
+- Les calculs scientifiques paralleles.
+
+Par exemple:
+- un jeu moderne envoie les modeles 3D au GPU.
+- Le GPU calcule l'affichage de millions de pixels simultanement.
+C'est pour cela qu'il possed des milliers de petits coeurs alors 
+qu'un CPU n'en possede generalement que quelques-uns 
+
+4. ont-ils leur propre memoire ?
+CPU 
+Le CPU possede plusieurs memoires tres rapides:
+CPU
+ ├─ Registres
+ ├─ Cache L1
+ ├─ Cache L2
+ └─ Cache L3
+Les registres sont les memoires les plus rapides.
+Exemple:
+    </> C 
+    int a = 5;
+    int b = 3;
+    int c = a + b;
+Pendant l'execution:
+RAM → Cache → Registres → ALU
+Le cPU essaye toujours de garder les donnees proches de lui.
+
+GPU 
+Le GPU possede generalement:
+GPU
+ ├─ Registres
+ ├─ Caches
+ └─ VRAM
+La VRAM (Video RAM) est une memoire dediee tres rapide.
+Par exmeple une carte graphique avec 8 Go de VRAM stocke:
+- Textures 
+- Modeles 3D 
+- Buffers 
+- Donnees IA 
+
+5. Comment le CPU execute-t-il un programme ?
+Supposons:
+    </> C 
+    int c = a + b; 
+    Apres compilation;
+    </> asm 
+    MOV RAX, [a]
+    ADD RAX, [b]
+    MOV [c], RAX 
+Le CPU suit un cycle appele:
+Fetch 
+Chercher l'instruction:
+RAM → Cache → CPU
+Decode
+Comprendre l'instruction:
+ADD 
+Execute 
+Effectuer l'operation:
+5 + 3 = 8
+Write back 
+Ecrire le resultat;
+RAM <- 8 
+Puis il recommmence des milliards de fois par seconde.
+
+6. Comment le CPU trouve-t-il les instructions ?
+Le CPU possede un registre special:
+Program Counter (PC)
+ou 
+Instruction Pointer (IP)
+Exemple:
+Adresse      Instruction
+
+1000         MOV
+1001         ADD
+1002         SUB
+
+Le PC contient:
+    PC = 1000
+Le CPU lit:
+    MOV 
+Puis:
+    PC = 1001 
+Puis le CPU lit:
+    ADD 
+etc.
+
+7. comment le GPU execute-t-il son travail ?
+Le GPU ne va generalement pas chercher tout seul un programme 
+dans le SSD 
+Le CPU lui dit:
+"Voici les données."
+"Voici le programme graphique."
+"Exécute-le."
+
+Par exemple:
+    </> C++ 
+    Dessine ce triangle 
+Le CPU prepare les donnees et les envoie au GPU. 
+
+Le GPU execute alors des milliers de threads en parallele 
+pour calculer l'image.
+
+8. pourquoi la RAM est-elle necessaire ?
+Le CPU est extremement rapide.
+Un SSD moderne:
+≈ quelques dizaines de microsecondes
+La RAM:
+≈ quelques dizaines de nanosecondes
+Les caches:
+≈ quelques nanosecondes
+Sans RAM, le CPU passerait son temps a attendre le SSD.
+
+9. Vue d'ensemble
+        SSD/HDD
+           │
+           ▼
+         RAM
+           │
+           ▼
+   ┌─────────────┐
+   │     CPU     │
+   │ Registres   │
+   │ L1/L2/L3    │
+   └─────────────┘
+           │
+           │ PCIe
+           ▼
+   ┌─────────────┐
+   │     GPU     │
+   │ Registres   │
+   │ Cache       │
+   │ VRAM        │
+   └─────────────┘
+
+Le CPU est le chef d'orchestre: il charge les programmes 
+depuis le stockage vers la RAM, lit les instructions, 
+execute la logique generale et delegue au GPU les taches massivement
+//. Le CPU et le GPU possedent chacun leurs propres registres et caches 
+pour acceder aux donnees les plus rapidement possible.
+
+Les coeurs (cores)
+Un coeur est une unite de calcul complete capable d'executer 
+des instructions.
+Par exemple:
+- CPU 4 coeurs -> peut executer plusieurs taches en // 
+- CPU 8 coeurs -> peut executer encore plus de taches simultanement
+Chaque coeur contient notamment;
+- Une unite de calcul (ALU)
+- Une unite de controle 
+- Des registres 
+- Des caches
+Schema simplifie:
+CPU
+├── Cœur 1
+├── Cœur 2
+├── Cœur 3
+└── Cœur 4
+
+les registres 
+Les registres sont de minusculles memoires ultra-rapides
+situees a l'interieur d'un coeur
+Ils servet a stocker temporairement:
+- Des nombres 
+- Des adresses memoire
+- Des resultats intermediaires 
+- L'instruction en cours 
+Par exemple:
+    </> C 
+    int a = 5;
+    int b = 3;
+    int c = a + b;
+Le CPU peut charger:
+    RAX = 5
+    RBX = 3
+Puis:
+    RAX = RAX + RBX 
+Resultat:
+    RAX = 8 
+Ici RAX et RBX sont des registres 
+
+Une analogie
+Imaginons un cuisinier:
+- Le coeur = le cuisinier
+- Les registres = ce qu'il tient dans ses mains 
+- Le cache = la table juste a cote 
+- La RAM = le plan de travail plus loin
+- Le SSD = le garde-manger.
+Le cuisinier (coeur) travaille.
+Ce qu'il a besoin immediatement, il le garde dans ses mains (registres)
+
+Rlation entre les deux 
+Chaque coeur possede ses propres registres 
+Par exmple, un processeur a 8 coeurs ressemble a:
+CPU
+├── Cœur 1
+│   ├── Registres
+│   └── Cache L1
+├── Cœur 2
+│   ├── Registres
+│   └── Cache L1
+...
+└── Cœur 8
+    ├── Registres
+    └── Cache L1
+
+Donc:
+ - Coeur = l'ouvrier qui execute les instructions 
+ - registre = la petite memoire ultra-rapide utilisee par 
+ ce coeur pour tarvailler 

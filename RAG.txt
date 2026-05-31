@@ -1,0 +1,65 @@
+En info, RAG signifie Retrieval-Augmented Generation 
+(generation augmentee par recuperation d'informations).
+C'est une technique utilisee avec les modeles d'IA 
+generative pour leur permettre d'utiliser des informations 
+externes au moment de repondre.
+
+Fonctionnement:
+1. Retrieval (Recuperation)
+    - L'utilisateur pose une question
+    - Le systeme recherche des informations pertinentes dans une 
+    base de connaissances, des PDF, une documentation, une base de 
+    donnees, etc.
+2. Augmented (Augmentation)
+    - Les informations trouvees sont ajoutees au contexte envoye au 
+    modele d'IA. 
+3. Generation (Generation)
+    - le modele genere une reponse en s'appuyant a la fois sur ses 
+    connaissances et sur les documents recuperes.
+
+Exemple 
+Imaginons qu'on cree un chatbot pour une entreprise.
+Sans RAG:
+- Question: << Quelle est la politique de conges de l'entreprise ? >>
+- L'IA risque de ne pas connaitre la reponse ou d'inventer.
+Avec RAG:
+- Le systeme cherche dans le manuel RH de l'entreprise 
+- Il recupere la section sur les conges 
+- L'IA repond en se basant sur ce document.
+Architecture simplifiee:
+Utilisateur
+     |
+     v
+Question
+     |
+     v
+Recherche dans les documents
+     |
+     v
+Documents pertinents
+     |
+     v
+LLM (GPT, Llama, etc.)
+     |
+     v
+Réponse
+
+Technologies souvent utilisees
+- Base vectorielle:
+    - Pinecone
+    - Weaviate
+    - Qdrant
+    - Chroma 
+- Frameworks:
+    - LangChain
+    - llamaIndex 
+- Modeles:
+    - OpenAI GPT 
+    - Anthropic Claude 
+    - Meta Llama 
+
+Avec Python et l'IA, construire un petit chatbot RAG 
+est une excellent projet: on peut ui faire lire des 
+PDF, les stocker dans une base vectorielle, puis 
+poser des questions sur leur contenu. C'est l'une 
+des applications les plus courantes des LLM aujourd'hui.

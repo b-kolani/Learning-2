@@ -1,0 +1,108 @@
+Les services cloud sont des ressources onformatiques  
+accessibles via Internet au lieu d'etre installees 
+et gerer sur notre propre ordinateur.
+
+Par exemple, au lieu d'installer PostgreSQL sur notre PC:
+Ton application
+      ↓
+PostgreSQL sur ton PC
+On utilise un service cloud:
+Ton application
+      ↓ Internet
+Serveur distant
+      ↓
+PostgreSQL
+
+Le fournisseur du coud s'occupe du materiel, de l'OS,
+des sauvegardes, de la securite et de la disponibilite.
+
+Types de services cloud 
+1. infrastructure (IaaS)
+Le fournisseur nous donne des machines virtuelles.
+Exemples:
+- Amazon Web Services 
+- Microsoft Azure 
+- google Cloud 
+On installe nous-meme:
+- Linux 
+- PostgreSQL 
+- Node.js 
+- Nginx 
+- etc.
+
+2. plateforme (PaaS)
+Le fournisseur gere une grande partie de l'infrastructure.
+Exemples:
+- render 
+- railway 
+- heroku 
+On envoie simplement notre code:
+GitHub
+   ↓
+Render
+   ↓
+Application en ligne
+
+3. logiciel en tant que service (SaaS)
+On utilise directement une app. 
+Exemples:
+- Gmail 
+- Google Docs 
+- Notion 
+On a rien a installer cote serveur.
+
+Exemples pour les bases de donnees 
+PostgreSQL
+- Neon 
+- Supabase 
+Ils nous fournissent une base PostgreSQL prete a l'emploi.
+
+MongoDB 
+- MongoDB Atlas 
+Il hebergent MongoDB pour nous. 
+
+MySQL 
+- PlanetScale 
+Ils hebrgent MySQL.
+
+Pourquoi le cloud est devenu si populaire ?
+Pas besoin de materiel 
+On n'achete pas de serveur.
+
+Accessible partout 
+Ordinateur portable
+        ↓
+Internet
+        ↓
+Serveur cloud
+
+On peut travailler n'importe ou.
+
+Evolutivite:
+Si notre app a:
+- 10 utilisateurs
+- 1 000 utilisateurs
+- 100 000 utilisateurs
+le fournisseur peut augmenter les ressources 
+
+Sauvegardes 
+Les sauvegardes et la haute disponibilite sont souvent integrees.
+
+Quand on developpe une app avec:
+React / Next.js
+        ↓
+Fastify
+        ↓
+Prisma
+        ↓
+PostgreSQL
+
+On peut avoir:
+- le frontend heberge sur Vercel 
+- le backedn sur Render 
+- la base PostgreSQL sur Neon 
+Tous ces services sont des services cloud 
+
+En resume, un service cloud est simplement un service 
+informatique (serveur, base de donnees, stockage, IA, application, etc)
+qui tourne sur des machines distantes et auque on accede via Internet.
