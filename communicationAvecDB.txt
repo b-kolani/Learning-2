@@ -1,0 +1,135 @@
+Pour qu'une app communique avec une DB, il existe 
+plusieurs moyens selon le type de SGBD (relationnel ou non relationnel).
+
+1. SGBDR (Bases relationnelles)
+Exemples:
+- PostgreSQL 
+- MySQL 
+- MariaDB 
+- Microsoft SQL Server 
+
+A. Pilote (Driver)
+Le moyen le plus bas niveau consiste a utiliser le pilote fourni par 
+la base.
+
+Exemple node.js:
+    import { Client } from "pg";
+
+    const client = new Client({
+        host: "localhost",
+        user: "postgres",
+        password: "password",
+        database: "test"
+    });
+
+    await client.connect();
+
+    const result = await client.query(
+        "SELECT * FROM users"
+    );
+
+    console.log(result.rows);
+
+Quelques drivers courants:
+| Base       | Driver   |
+| ---------- | -------- |
+| PostgreSQL | pg       |
+| MySQL      | mysql2   |
+| SQL Server | mssql    |
+| Oracle     | oracledb |
+
+B. ORM (Object Relational Mapper)
+Un ORM convertit les tables SQL en objets.
+Exemples:
+- Prisma 
+- TypeORM
+- Sequelize 
+- Hibernate 
+
+Exemple Prisma:
+const users = await prisma.user.findMany();
+Au lieu d'ecrire:
+    SELECT * FROM users;
+
+C. Query Builder
+Intermediaire entre SQL brut et ORM 
+Exemple:
+- Knex.js 
+    const users = await knex("users")
+        .where("age", ">", 18);
+
+2. Bases NoSQL 
+
+Exemples:
+- MongoDB 
+- Redis 
+- Cassandra 
+
+A. Driver natif 
+Exemple MongoDB:
+const users = await db 
+    .collection("users")
+    .find({})
+    .toArray();
+Ici on manipule des documents BSON et non des tables.
+
+B. ODM (Object Document Mapper)
+Equivalent d'un ORM pour MongoDB.
+Exemple:
+- Mongoose 
+    const users = await User.find();
+
+3. Via une API 
+Parfois l'app ne se connecte jamais directment a la base.
+Architecture:
+    Frontend
+        ↓
+    API REST
+        ↓
+    Base de données
+
+Exemple:
+    React
+      ↓
+    Fastify / Express
+      ↓
+    PostgreSQL
+
+Le Frontend React parle au backend Faastify, puis 
+Faastify utilise Prisme pour acceder a PostgreSQL.
+
+4. Via un protocole reseau 
+Les SGBD exposent generalement un protocole reseau.
+
+Par exemple:
+Application
+    ↓ TCP/IP
+PostgreSQL (5432)
+
+Application
+    ↓ TCP/IP
+MongoDB (27017)
+
+Le driver traduit les appels du langage vers ce protocole.
+
+Resume 
+Les moyens les plus courants d'integration sont:
+| Méthode             | SGBDR | NoSQL |
+| ------------------- | ----- | ----- |
+| Driver natif        | ✓     | ✓     |
+| ORM / ODM           | ✓     | ✓     |
+| Query Builder       | ✓     | Rare  |
+| API REST            | ✓     | ✓     |
+| GraphQL             | ✓     | ✓     |
+| Accès direct TCP/IP | ✓     | ✓     |
+
+Dans les apps modernes Node.js, les combinaisons les plus 
+frequentes sont:
+- PostgreSQL + Prisma
+- PostgreSQL + pg 
+- MySQl + Prisma
+- MongoDB + Mongoose
+- MongoDB + Driver officiel MongoDB
+Ce sont les solutions qu on rencontre le plus souvent dans les 
+projets professionnels.
+

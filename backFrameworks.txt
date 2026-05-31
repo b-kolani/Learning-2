@@ -1,0 +1,150 @@
+Pourquoi utiliser un framework backend ?
+Techniquement, on peut creer un serveur web sans framework.
+Par exemple avec Node.js:
+    </> JavaScript 
+    import http from "htpp";
+
+    const server = http.createServer((req, res) => {
+        res.end("Hello World");
+    });
+
+    server.lsiten(3000);
+
+Mais des que l'app devient plus grande, on a besoin de:
+- gerer les routes (/users, /products, ...)
+- parser le JSOn 
+- gerer l'authentification
+- valider les donnees
+- gerer les erreurs
+- se connecter a une DB
+- gerer les middlewares
+- securiser l'app 
+Un framework fournit deja ces outils.
+
+Au lieu de tout ecrire nous-meme:
+    Application
+        ↓
+    Framework
+        ↓
+    Serveur HTTP
+        ↓
+    Système d'exploitation
+
+Exemple avce Express
+Sans Framework:
+    </> JavaScript
+    if (req.url === "/users" && req.method === "GET")
+    {
+        ...
+    }
+
+Avec Express:
+    </> JavaScript
+    app.get("/users", async(req, res) =. {
+        ...
+    });
+C'est plus simple et plus lisible.
+
+Frameworks backend par langage
+
+JavaScript/TypeScript
+- Express:
+Le plus populaire historiquement 
+    </> JavaScript
+    app.get("/users", handler);
+- Fastify:
+Plus rapide et moderne
+    </> JavaScript
+    fastify.get("/users", handler);
+- NestJS:
+Inspire d'Angular.
+Tres utilise en entreprise 
+Controller
+Service
+Repository
+Database
+- Hono 
+Leger et moderne.
+populaire pour les Edge Functions.
+
+Python
+- Django:
+Framework complet.
+Inclut:
+- ORM 
+- Authentification
+- Admin panel 
+- Securite 
+- Flask:
+Minimaliste.
+On ajoute ce dont on a besoin 
+- FastAPI 
+Tres populaire pour l'IA et les APIs.
+    </> Python
+    @app.get("/users")
+    def get_users:
+        return users 
+    
+Java:
+- Spring Boot 
+Le standard du backend Java 
+Tres utilise dans:
+- banques 
+- assurances 
+- grandes entreprises 
+
+C#:
+- ASP.NET Core 
+Le framework backend principal de Microsoft. 
+Tres utilise pour;
+- applications metier 
+- ERP 
+- APIs 
+
+PHP:
+- Laravel 
+Le plus populaire aujourd'hui.
+- Symfony 
+Tres present dans les grandes entreprises europeennes 
+
+
+Ruby:
+- Ruby on Rails
+Connu pour sa productivite.
+De nombreuses startups l'ont utilise.
+
+Go:
+- Gin
+Simple et performant.
+- Fiber
+inspire d'Express.
+
+Rust 
+- Actix Web 
+Tres performant.
+- Axum 
+- moderne et apprecie actuellement.
+
+C++ 
+Le C++ est moins utilise pour lesAPIs web classiques,
+mais il existe:
+- Crow 
+Inspire de Flask
+- Drogon
+Tres performant.
+
+Comment choisir ?
+1. Fastify + PostgreSQL + Prisma 
+    - excellent pour apprendre le backend moderne 
+    - proche de ceux deja utilise (Express)
+2. fastAPI 
+    - tres utile pour l'IA et la data science 
+3. NestJS 
+    - quand on voudra decouvrir l'architecture utilisee dans 
+    beaucoup d'entreprises 
+
+Les routes, middleware, authentification, ORM, API REST,
+WebSocket, validation, etc sont quasiment les memes dans 
+tous les frameworks backend. Une fois qu'on maitrise 
+Fastify, apprendre Django, Spring Boot ou ASP.NET Core 
+deveint beaucoup plus facile.

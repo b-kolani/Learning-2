@@ -1,0 +1,98 @@
+1. Utiliser des services en ligne 
+PostgreSQL 
+On peut creer une base PostegreSQL gratuite sur:
+- Neon 
+- Supabase 
+Ils fournissent:
+- une base PostegreSQL hebergee 
+- un editeur SQL dans le navigateur 
+- une chaine de connexion pour nos apps 
+Exemple:
+    </> SQL 
+    CREATE TABLE users (
+        id SERIAL PRIMARY KEY,
+        name TEXT
+    );
+    INSERT INTO users(name)
+    VALUES ('Alice');
+    On execute tout cela directement depuis le navigateur.
+
+MySQL
+On peut utiliser:
+- PlanetScale 
+Ou des environnements de demonstration en ligne.
+
+MongoDB:
+On peut utiliser:
+- MongoDB Atlas 
+Atlas propose:
+- une base MongoDB gratuite 
+- une interface web 
+- un editeur de requetes 
+Exemple:
+    db.users.insertOne({
+        name: "Alice"
+    });
+
+2. Utiliser des environnements web interactifs 
+Pour apprendre SQL sans rien installer:
+- SQLBolt
+- DB Fiddle 
+- SQLite Online 
+Ils permettent d'ecrire et executer du SQL directement dans 
+le navigateur.
+
+3. Utiliser Docker 
+Si Docker est deja installe sur la machine:
+    </> Bash 
+    docker run -d \
+        --name postgres \
+        -e POSTGRES_PASSWORD=password \
+        -p 5432:5432 \
+        postgres
+
+4. Utiliser des versions portables
+certains outils existent en version portable:
+MongoDB
+On peut parfois telecharger les binaires et lancer:
+    </> Bash
+    mongosh 
+    sans installation systeme 
+
+PostgreSQL 
+Il exite des distributions portables selon le systeme d'exploitation 
+
+5. Utiliser un langage de programmation 
+- JavaScript / typeScript
+- Python 
+On peut se connecter directement a une base distante.
+
+PostgreSQL avec Node.js 
+    </. JavaScript
+    import { Client } from "pg";
+
+    const client = new Client({
+        connectionString: process.env.DATABASE_URL 
+    });
+    await clinet.connect();
+
+MongoDB avec Node.js 
+    </> JavaScript
+    import { MongoClient } from "mongodb";
+
+    const client = new MongoClient(uri);
+    await client.connect()
+    On n'a alors pas besoin de psql ou mongosh 
+
+Recommandation:
+Si on a aucun droit d'installation:
+1. On commmence par MongoDB Atlas pour MongoDB 
+2. Utiliser Neon ou Supabase pour PostgreSQL.
+3. Faire les exos de SQLBolt pour apprendre SQL.
+4. Se connecter a ces bases depuis nos projets Node.js avec:
+    - pg pour PostgreSQL
+    - mongodb ou Mongoose pour MongoDB
+C'est d'ailleurs une approche tres proche de ce qui se fait 
+en entreprise: les DB sont souvnet sur un serveur distant 
+ou dans le cloud;  et les developpeurs ne passent pas 
+forcement leur temps dans psql ou mongosh installes loclement.

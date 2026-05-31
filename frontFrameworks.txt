@@ -1,0 +1,138 @@
+Pourquoi utiliser un framework frontend ?
+On peut creer un site web uniquement avec:
+- HTML 
+- CSS 
+- JavaScript 
+Par exemple:
+
+    </> HTML 
+    <button id="btn">Compteur</button>
+    <p id="count">0</p>
+
+    </> JavaScript
+    let count = 0;
+    document.getElementById("btn").addEvemtListener("click", () => {
+        count++;
+        document.getElementById("count").textContent = count;
+    });
+Cela fonctionne tres bien pour de petist projets 
+
+Mais quand l'app grandit;
+- centaines d'ecrans 
+- gestion des utilisateurs 
+- tableaux de bord 
+- messagerie temps reel 
+- jeux multijoueurs 
+- applications mobiles 
+la gestion du DOM devient compliquee.
+
+Les frameworks apportent:
+- composants reutilisables
+- gestion de l'etat (state)
+- routage 
+- communication avec les APIs 
+- optimisation du rendu 
+- outils de developpement
+
+Frameworks frontend par langage 
+Dans la pratique, la plupart des frameworks frontend utilisent 
+JavaScript ou TypeScript.
+Les plus populaires aujourd'hui
+
+React
+La technologie la plus utilisee.
+    </> JavaScript
+    function Counter() {
+        const [count, setCount] = useState(0);
+
+        return (
+            <button onClick={() => setCount(count + 1)}>
+                {count}
+            </button>
+        );
+    }
+
+Next.js 
+Construit au-dessus de React.
+Ajoute:
+- routage automatique 
+- rendu serveur (SSR)
+- API routes 
+- optimisation SEO 
+Tres demande en entreprise 
+
+Vue.js 
+Plus simple a apprendre que REcat pour beaucoup 
+de developpeurs.
+    </> vue 
+    <template>
+        <button @click="count++">
+            {{ count }}
+        </button>
+    </template>
+
+Nuxt 
+Equivalent de Next.js pour Vue.
+
+Angular 
+Framework complet developpe par Google 
+Tres utilise dans:
+- banques 
+- assurances 
+- grandes entreprises 
+
+Svelte
+Plus leger que React ou Angular.
+
+SvelteKit 
+Equivalent de Next.js pour Svelte.
+
+Frontend mobile
+Si on veut creer des apps Android/iPhone 
+
+React Native 
+Utilise React.
+Un seul code pour Android et iOS.
+
+Flutter
+Developpe par Google.
+Utilise le langage Dart.
+Tres populaires pour les apps mobiles.
+
+Frameworks CSS 
+Ils ne remplacent pas React ou Vue, mais aident 
+pour le design.
+
+Tailwind CSS 
+    </> HTML
+    <div class="flex items-center p-4"></div>
+
+Bootstrap 
+Tres connu historiquement.
+
+Ce qu on voit le plus aujourd'hui 
+
+Startups/SaaS 
+- React 
+- Next.js
+- Tailwind CSS 
+Grandes entreprises 
+- Angular 
+- React 
+- Vue.js 
+Mobile 
+- React Native 
+- Flutter 
+
+Exemple de combo:
+Frontend
+  React / Next.js
+       ↓
+API
+  Fastify
+       ↓
+ORM
+  Prisma
+       ↓
+Base de données
+  PostgreSQL

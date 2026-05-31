@@ -1,0 +1,94 @@
+mongosh, psql et d'autres outils sont encore une autre 
+facon d'interagir avc une DB.
+
+Clients en ligne de commande (CLI)
+Ce sont des programmes qui permettent a un humain de se 
+connecter directement a la DB et d'executer des commandes.
+
+PostgreSQl 
+- psql 
+Connexion:
+    </> Bash 
+    psql -U postgre -d mydatabase 
+Execution d'une requete:
+    </> SQl 
+    SELECT * FROM users;
+Afficher les tables:
+    </> SQL 
+    \dt 
+
+MongoDB 
+- mongosh 
+Connexion:
+    </> Bash 
+    mongosh
+Lister les bases 
+    </> JavaScript 
+    show dbs 
+Changer de base;
+    </> JavaScript
+    use ineventory 
+Afficher les documents;
+    </> JavaScript
+    db.products.find()
+
+MySQl 
+- mysql 
+    </> Bash
+    mysql -u root -p 
+Puis;
+    </> SQL 
+    SHOW DATABASES;
+
+Ou se situent-ils dans l'ecosysteme ?
+Prenons PostgreSQL:
+psql
+  ↓
+PostgreSQL Server
+
+Ou:
+Application Node.js
+   ↓
+Prisma / pg
+   ↓
+PostgreSQL Server
+
+Dans les deux cas, c'est le meme serveur PostgreSQL qui 
+recoit les requetes.
+
+La difference est que:
+- psql est utilise par un humain dans un terminal 
+- pg, Prisma ou un autre driver sont utilises par un programme 
+
+Autres outils d'administration
+Il exist aussi des interfaces graphiques:
+
+PostgreSQL
+- pgAdmin
+- DBeaver 
+
+MongoDB
+- MongoDB Compass 
+
+Multi-SGBD 
+- DataGrip 
+- DBeaver 
+
+On peut donc classer les moyens d'interagir avec une base de 
+donnees ainsi:
+1. Humain
+   ├─ psql
+   ├─ mongosh
+   ├─ mysql
+   └─ Interfaces graphiques (DBeaver, Compass...)
+
+2. Application
+   ├─ Drivers (pg, mysql2, mongodb)
+   ├─ ORM/ODM (Prisma, Mongoose...)
+   ├─ Query Builders (Knex...)
+   └─ API REST / GraphQL
+
+Ainsi, mongosh et psql ne remplacent pas Prisma 
+ou Mongoose: ce sont des outils d'administration 
+et de test qui permettent de dialoguer directement 
+avec la base depuis un terminal. 
