@@ -1,0 +1,131 @@
+libuv est une bibliotheque C multiplateforme utilisee 
+pour la programmation asynchrone et evenementielle.
+
+Elle fournit notamment:
+- Une boucle d'evenements (event loop)
+- Les sockets TCP/UDP 
+- Les pipes 
+- Les timers 
+- Les threads 
+- Les operations asynchrones sur les fichiers 
+- La gestion des signaux (SIGINT, SIGTERM, etc.)
+Le principal interet est qu'elle masque les differences entre 
+les systemes d'exploitation (Linux, Windows, macOS, etc.)
+
+Pourquoi libuv existe-t-elle ?
+Sous Linux, un serveur reseau utilise souvent:
+- epoll
+- select 
+- poll  
+Sous Windows, on utilise:
+- IOCP (I/O Completion Ports)
+Ces API sont differentes.
+
+libuv fournit une interface unique:
+    </> C 
+    uv_tcp_init(...);
+    uv_listen(...);
+    uv_read_start(...);
+    et se charge d'utiliser epoll, kqueue, ou IOCP selon le 
+    systeme.
+
+Architecture simplifiee 
+Votre application
+       │
+       ▼
+     libuv
+       │
+ ┌─────┴─────┐
+ │           │
+Linux      Windows
+(epoll)     (IOCP)
+
+Relation avec Node.js
+Node.js repose sur libuv.
+
+Quand on ecrit:
+    </> JavaScript
+    setTimeout(() => {
+        console.log("Hello");
+    }, 1000);
+
+    ou 
+
+    </> JavaScript
+    fs.readFile("file.txt", callback);
+
+    ou 
+
+    </> JavaScript
+    http.createServer(...);
+
+Node.js utilise libuv derriere les coulisses.
+
+Schematiquement;
+
+Votre code JS
+      │
+      ▼
+    Node.js
+      │
+      ▼
+     libuv
+      │
+      ▼
+Système d'exploitation
+
+Exemple: timer avec libuv
+    </> C
+    uv_loop_t *loop;
+    uv_timer_t timer;
+Creation de la boucle:
+    </> C 
+    loop = uv_default_loop();
+Initialisation du timer:
+    </> C 
+    uv_timer_init(loop, &timer);
+Lancement:
+    </> C 
+    uv_timer_start(&timer, callback, 1000, 0);
+Execution de la boucle:
+    </> C 
+    uv_run(loop, UV_RUN_DEFAULT);
+C'est l'equivalent de:
+    </> JavaScript
+    setTimeout(callback, 1000);
+dans Node.js.
+
+Comparaison avec ce que je connais deja:
+Daans le projet mini_serv, on a probablement utilise:
+    </> C 
+    fd_set active_set;
+    fd_set read_set;
+
+    select(...);
+    FD_ISSET(...);
+Avec select(), on gere nous-memes les descripteurs.
+Avec libuv, on ecrit plutot:
+    </> C 
+    uv_tcp_t server;
+    uv_listen(...);
+et libuv s'occupe de surveiller les sockets et d'appeler 
+nos callbacks quand quelque chose se produit.
+
+Quand utiliser libuv ?
+Utiliser libuv si on veut:
+- Ecrire un serveur reseau performant en C/c++.
+- Creer une application evenementielle.
+- Avoir un code portable Linux/Windows/macOS.
+- Comprendre le fonctionnement interne de Node.js. 
+
+Si notre objectif est d'apprendre les bases des serveurs,
+voici comment apprendre:
+1. socket()
+2. bind()
+3. listen()
+4. accept()
+5. select()
+6. poll()
+7. epoll()
+8. puis libuv
+En ce moment on comprendra ce que libuv abstrait reellement.

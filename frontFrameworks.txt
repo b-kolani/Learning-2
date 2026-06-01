@@ -62,7 +62,7 @@ Ajoute:
 Tres demande en entreprise 
 
 Vue.js 
-Plus simple a apprendre que REcat pour beaucoup 
+Plus simple a apprendre que React pour beaucoup 
 de developpeurs.
     </> vue 
     <template>

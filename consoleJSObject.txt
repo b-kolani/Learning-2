@@ -1,0 +1,76 @@
+console.dir() est une fonction JavaScript qui affiche 
+un objet de maniere detaille dans la console.
+
+Exemple
+    </> JavaScript
+    const user = {
+        name: "Ali",
+        age: 25,
+        skills: ["C", "C++", "JavaScript"]
+    };
+
+    console.dir(user);
+
+Affiche une representation structuree de l'objet:
+    {
+        name: 'Ali',
+        age: 25,
+        skills: ['C', 'C++', 'JavaScript' ]
+    }
+
+Difference avec console.log()
+    </> JavaScript
+    console.log(user);
+    console.dir(user);
+Dans Node.js, le resulat est souvent tres proche.
+
+Dans un navigateur, console.dir() affiche generalement l'objet sous 
+forme d'arbre avec ses proprietes, tandis que console.log() peut 
+afficher une representation plus adaptee a l'element concerne.
+
+Par exemple:
+    </> JavaScript
+    const h1 = document.querySelector("h1");
+
+    console.log(h1);
+    console.dir(h1);
+- console.log(h1) affiche l'element HTML:
+    </> HTML 
+    <h1>Hello</h1>
+- console.dir(h1) affiche toutes les proprietes JavaScript de l'objet DOM:
+    HTMLHeadingElement
+        accessKey: ""
+        className: ""
+        innerHTML: "Hello"
+        ...
+
+Options de console.dir() dans Node.js 
+    </> JavaScript
+    console.dir(user, { depth: null, colors: true });
+Options courantes:
+- depth: profondeur maximale d'affichage des objets imbriques.
+- colors: active les couleurs dans le terminal.
+
+Exemple:
+    </> JavaScript
+    const obj = {
+        a: {
+            b: {
+                c: {
+                    d: 42
+                }
+            }
+        }
+    };
+
+    console.dir(obj, { depth: null });
+Affiche toute la structure, sans la tronquer.
+
+Quand l'utiliser ?
+cons'.dir() est utile orsque:
+- vous deboguez des objets complexes;
+- vous inspectez des objets DOM dans le navigateur;
+- vous voulez controler la profondeur d'affichage dans Node.js 
+Pour un simple affichage de valeurs, console.log() est generalement 
+suffisant. Pour explorer la structure interne d'un objet, console.dir()
+est souvent plus pratique.

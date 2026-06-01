@@ -1,0 +1,53 @@
+La contention de ressources apparait lorsque plusieurs 
+taches veulent utiliser la meme ressource limitee.
+
+Exemple:
+Pool de 2 connexions
+Connexion A -> utilisee 
+Connexion B -> utilisee
+
+Nouvelle requete -> attend 
+Les 2 connexions sont deja occupees.
+
+La troisieme reuqte est bloquee jusqu'a ce qu'une connexion se 
+libere.
+C'est une contention sur les connexions.
+
+Autres exemples de contention
+CPU 
+Supposons:
+CPU: 4 coeurs
+Programmes: 100
+
+Les 100 programmes veulent utiliser le CPU, mais il n'y a que 4 coeurs.
+
+Ils se partagent donc la ressource.
+
+Base de donnees
+    Pool: 10 connexions
+    Requetes simultanees: 100
+Les 90 requetes restantes attendent.
+
+Fichier 
+2 programmes veulent ecrire dans le meme fichier:
+Programme A ---> fichier.txt
+Programme B ---> fichier.txt 
+Le systeme doit coordonner l'acces pour eviter les conflits.
+C'est aussi une forme de contention.
+
+Dans MongoDB
+    </> JavaScript
+    const client = new MongoClient(uri, {
+        maxPoolSize: 10
+    });
+    Ici:
+    - MongoClient gere un pool.
+    - Le pool peut contenir jusqu'a 10 connexions.
+    - Si 10 operations utilisent deja ces connexions, la 11e devra attendre.
+
+Resume:
+- Connexion: canal de communication entre notre app et MongoDB.
+- Pool de connexions: ensemble de connexions reutilisables gere par MongoClient.
+- Ressource: quelque chose de limite (CPU, memoire, connexion, fichier, socket, etc.).
+- Contention de ressources: situation ou plusieurs taches veulent utiliser 
+la meme ressource limitee en meme temps.

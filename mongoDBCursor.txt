@@ -1,0 +1,92 @@
+find() dans MongoDB ne renvoie pas directement les documents,
+mais un curseur (cursor).
+
+Quand on ecrit:
+    </> JavaScript
+    const movies = database.collection('movies');
+    console.log(movies.find());
+On affiche l'objet Cursor, pas les resultats de la requete.
+On verra quelque chose ressemblant a:
+    FindCursor {
+        ...
+    }
+Qu'est ce qu'un Cursor ?
+Imaginons que notre collection contient 1 million de 
+documents.
+
+MongoDB ne charge pas tout immediatement en memoire. 
+A la place, il renvoie un objet qui sait comment 
+parcourir les resultats.
+Collection
+   |
+   +--> find({})
+            |
+            +--> Cursor
+                    |
+                    +--> document 1
+                    +--> document 2
+                    +--> document 3
+                    ...
+
+Pour recuperer les documents
+On doit convertir le cursor en tableau:
+    </> JavaScript
+    const movies = database.collection('movies');
+    const result = await movies.find().toArray();
+    console.log(result);
+
+Resultat:
+    </> JavaScript
+    [
+        { title: "Titanic", year: 1997 },
+        { title: "Avatar", year: 2009 }
+    ]
+
+Ou parcourir le cursor 
+    </> JavaScript
+    const cursor = movies.find({});
+
+    for await (const movie of cursor) {
+        console.log(movie);
+    }
+
+Pourquoi MongoDB fait ca ?
+Pour l'efficacite:
+    </> JavaScript
+    movies.find({})
+    ne lit pas encore tous les documents. 
+
+Le serveur MongoDB prepare simplement la requete.
+
+Les documents sont recuperes progressivement lorsqu'on fait:
+    </> JavaScript
+    await cursor.next();
+
+    ou 
+
+    </> JavaScript
+    await cursor.toArray();
+
+    ou
+
+    </> JavaScript
+    for await (...)
+
+Comparaison avec SQL 
+En SQL, on imagine souvent:
+    </> SQL 
+    SELECT * FROM movies;
+    qui renvoie directement les lignes.
+
+Avec le driver MongoDB Node.js:
+    </> JavaScript
+    const cursor = movies.find({});
+equivaut plutot a:
+    "Voici un objet qui peut parcourir les resultats du SELECT"
+et 
+    </> JavaScript
+    await cursor.toArray();
+equivaut a:
+    "Recupere maintenant toutes les lignes"
+C'est pour cela que console.log(find({})) affiche un objet 
+FindCursor au lieu de la liste des films.

@@ -1,0 +1,79 @@
+Scenario:
+Imaginons que notre app utilise un seul objet client
+pour se connecter a notre db:
+    </> JavaScript
+    const client = new MongoClient(uri);
+    et qu'on l'utilise pour:
+    1. recuperer des users 
+    2. enregistrer des messages 
+    3. effectuer une grosse agregation en //.
+    </> JavaScript
+    const users = usersCollection.find().toArray();
+    const messages = messagesCollection.insertOne({...});
+    const stats = ordersCollection.aggregate([...]).toArray();
+Si l'agregation prend 10 secondes a cause d'une enorme quantite 
+de donnees, elle peut monopoliser certaines ressources du client 
+ou du pool de connexions.
+
+Les autres requetes peuvent alors devoir attendre qu'une connexion 
+se libere.
+
+Pourquoi ?
+Derriere MongoClient, il existe un pool de connexions.
+MongoClient
+    |
+    +-- Connexion 1
+    +-- Connexion 2
+    +-- Connexion 3
+    +-- ...
+Chaque operation MongoDB utilise une connexion du pool.
+Si: 
+- le pool contient 10 connexions,
+- 10 requetes longues sont deja en cours,
+alors une 11e requete devra attendre.
+
+C'est ce qu'on appelle la contention des ressources.
+
+Exemple concret
+Supposons:
+    </> JavaScript
+    const client = new MongoClient(uri, {
+        maxPoolSize: 2
+    });
+    Pool: 
+        Connexion A 
+        Connexion B 
+    Puis: 
+        </> JavaScript
+        await Promise.all([
+            verySlowQuery(),
+            anotherSlowQuery(),
+            quickQuery()
+        ]);
+        - verySlowQuery() prend la connexion A.
+        - anotherSlowQuery() prend la connexion B.
+        - quickQuery() doit attendre qu'une connexion se libere. 
+Meme si quickQuery() ne prendrait normalement que quelques millisecondes.
+
+Est-ce grave ?
+Pas forcement.
+Dans la plupart des apps Node.js on cree un seul MongoClient pour 
+toute l'app, ce qui est d'aileurs recommande par MongoDB.
+
+On ajuste simplement la taille du pool si necessaire:
+    </> JavaScript
+    const client = new MongoClient(uri, {
+        maxPoolSize: 50
+    });
+
+A retenir
+- MongoClient possede un pool de connexions .
+- Plusieurs operations peuvent partager ce pool.
+- Si certaines operations sont tres lentes, elles peuvent occuper 
+les connexions disponibles. 
+- Les nouvelles operations devront attendre.
+- La solution n'est generalement pas de creer plusieurs MongoClient,
+mais d'avoir un pool suffisamment grand et des requetes efficaces.
+C'est exactement le meme principe qu'une banque avec 5 guichets: si 5 clients 
+effectuent des operations tres longues, le 6e client devra attendre meme 
+si sa demande est tres rapide.

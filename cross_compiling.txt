@@ -1,0 +1,109 @@
+Le cross-compiling (compilation croisee) consiste a comipler
+un programme sur une machine pour qu'il sexecute sur une autre
+plateforme.
+
+Autrement dit:
+- Machine de developpement (host): celle sur laquelle on compile.
+- Machine cible (target): celle qui executera le programme.
+
+Exemple 1: Linux -> Windows
+On est sur Ubuntu et on compile:
+    </> C++
+    #include <iostream>
+
+    int main() {
+        std::cout << "Hello\n";
+    }
+
+    avec un compilateur comme:
+    </> Bash 
+    x86_64-w64-mingw32-g++ 
+    Le resultat sera:
+    hello.exe 
+    Meme si on a compile sous Linux, il est destine a etre 
+    execute sous Windows.
+
+Exemple 2; PC -> Raspberry Pi
+On developpe sur notre PC x86_64:
+    Architecture de PC: x86_64
+mais on veut executer notre programme sur un Raspberry Pi:
+    Architecture; ARM 
+On utilise alors un compilateur ARM:
+    </> Bash
+    arm-linux-gnuabihf-g++ 
+pour produire un executable ARM.
+
+Pourquoi faire du cross-compiling ?
+1. Systemes embarques
+Tres frequent pour:
+- Raspberry Pi
+- Routeurs
+- Objets connectes (IoT)
+- Consoles de jeux 
+- Smartphones Android 
+Ces appareils sont parfois trop limites pour compiler 
+eux-memes les programmes.
+
+2. Produire plusieurs versions d'un logiciel
+Par exemple un meme projet:
+MonProgramme
+├── Linux
+├── Windows
+├── macOS
+└── ARM
+peut etre compile depuis une seule machine.
+
+Compilation normale vs Cross-compilation 
+Compilation normale:
+PC Linux x86_64
+      |
+      | compile
+      v
+Programme Linux x86_64
+      |
+      | exécute
+      v
+PC Linux x86_64
+Host = Target.
+
+Cross-compilation 
+PC Linux x86_64
+      |
+      | compile
+      v
+Programme Windows x86_64
+      |
+      | exécute
+      v
+PC Windows x86_64
+Host # Target.
+
+Toolchain
+Pour faire du cross-comiling, on utilise une toolchain:
+    Compilateur 
+    Assembleur 
+    Linker 
+    Bibliotheques 
+
+Exemples:
+    - x86_64_w64-mingw32-gcc - Windows
+    - arm-linux-gnueabihf-gcc -> ARM Linux 
+    - aarch64-linux-gnu-gcc -> ARM 64 bits 
+
+Lorsqu'on travaille avec:
+- des serveurs C/c++,
+- des systemes Linux,
+- de l'assembleur,
+- des projets embarques,
+- ou meme des moteurs de jeux,
+on rencontre souvent des commandes du genre:
+    </> Bash 
+    --target=aarch64-linux-gnu 
+
+    ou 
+
+    </> Bash 
+    arm-linux-gnueabihf-g++
+Cela indique simplement que le compilateur genere du code 
+pour une architecture differente de celle de la machine 
+qui compile: c'est le principe du cross-compiling.

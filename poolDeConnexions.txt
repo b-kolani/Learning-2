@@ -1,0 +1,37 @@
+Par exemple quand une app communique avec MongoDB,
+elle doit ouvrir une connexion reseau vers le 
+serveur MongoDB.
+
+Creer une connexion est relativement couteux:
+App -> ouvrir connexion -> MongoDB
+Si chaque requete ouvrait et fermait sa propre 
+connexion, les performances seraient mauvaises.
+
+A la place, le driver MongoDB cree un pool de connexions 
+(un ensemble de connexions reutilisables).
+MongoClient
+    |
+    +-- Connexion 1
+    +-- Connexion 2
+    +-- Connexion 3
+    +-- Connexion 4
+
+Lorsqu'une operation a besoin de parler a MongoDB:
+1. elle emprunte une connexion du pool;
+2. elle execute sa requete;
+3. elle remet la connexion dans le pool.
+
+La connexion n'est pas fermee, elle est reutilisee.
+
+Analogie:
+Imaginons un restaurant:
+Restaurant
+    |
+    +-- Table 1
+    +-- Table 2
+    +-- Table 3
+Les tables sont les connexions.
+- Un client arrive -> il prend une table.
+- Il mange -> il utilise la ressource.
+- Il part -> la table redevient disponible.
+Le restaurant n'achete pas une nouvelle table pour chaque client.

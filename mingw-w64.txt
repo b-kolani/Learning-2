@@ -1,0 +1,79 @@
+MinGW-w64
+MinGW-w64 est un ensemble d'outils qui permet d'utiliser 
+les compilateurs GNU sur Windows.
+Il contient notamment:
+- g++ -> compilateur C++
+- gcc -> compilateur C 
+- gdb -> debogueur 
+- outils GNU classiques (make, etc.)
+En gros, MinGW-w64 permet d'avoir un environnement proche 
+de Linux pour compiler du C/C++ sur Windows.
+
+Quand on ecrit:
+    </> Bash 
+    g++ main.cpp 
+    c'est MinGW-w64 qui fournit la commande g++.
+
+Pourquoi le nom "MinGW" ?
+MinGW signifie:
+Minimalist GNU for Windows
+
+Le w64 signifie que:
+- il supporte le 64 bits 
+- et aussi le 32 bits 
+
+MSYS2
+MSYS2 est un environnement qui apporte:
+- un terminal de style Linux 
+- des outils Unix 
+- un gestionnaire de paquets (pacman)
+- et permet d'installer facilement MinGW-w64 
+
+On peut voir MSYS2 comme:
+    une mini-distribution Linux adaptee a Windows.
+
+Relation entre les deux
+MSYS2 est souvent utilise pour installer MinGW-w64 facilement.
+
+Donc:
+MSYS2
+ └── installe → MinGW-w64
+                   └── fournit → g++
+Pourquoi beaucoup de devs C++ utilisent ca sur Windows ?
+Parce que:
+- c'est proche de Linux 
+- compatible avec beaucoup de projets open source 
+- pratique pour VS Code 
+- utilise dans beaucoup de tutoriels 
+
+Difference avec Visual Studio (MSVC)
+Windows possede aussi un autre compilateur:
+        cl.exe
+fournit par Microsoft via:
+- Visual Studio 
+- Visual Studio Build Tools
+Ce compilateur s'appelle MSVC 
+Donc sur Windows on a souvent:
+| Compilateur | Fournisseur     |
+| ----------- | --------------- |
+| g++         | GNU / MinGW-w64 |
+| cl.exe      | Microsoft       |
+
+Resume simple 
+| Outil     | Rôle                                                              |
+| --------- | ----------------------------------------------------------------- |
+| MinGW-w64 | Fournit le compilateur `g++` sur Windows                          |
+| MSYS2     | Environnement + gestionnaire de paquets pour installer ces outils |
+| g++       | Le compilateur C++ lui-même                                       |
+
+Exemple concret
+Quand on tape:
+    </> Bash 
+    g++ test.cpp -o test 
+    Voici ce qui se passe:
+    g++ (MinGW-w64)
+        ↓
+    Compile ton code
+        ↓
+    Produit test.exe
+Et MSYS2 sert a installer et gerer tout ca facilement.
