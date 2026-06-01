@@ -1,0 +1,9 @@
+Utilisation de la commande netcat en mode serveur c-à-d comme serveur
+si on n'a pas un serveur pour communiquer avec notre client. On le 
+peut le faire comme suit:
+    netcat -l -p 5000 
+Cela veut dire utiliser l'outil réseau netcat en mode serveur (-l)
+sur le port 5000
+Sans -l netcat est utilisé comme client pour communiquer ou tester 
+un serveur qu'on a crée.
+

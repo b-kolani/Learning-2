@@ -1,3 +1,6 @@
 htons
 htonl
 IPPORT_USERRESERVED
+ss -tln
+ip addr 
+ifconfig

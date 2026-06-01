@@ -1,0 +1,56 @@
+Les 3 propriétés importantes TCP:
+1. Bidirectionnelle
+Cela signifie que les 2 machines peuvent envoyer et recevoir des données.
+Par exemple:
+Client  <----------------->  Serveur
+        envoi et réception
+Le client peut envoyer des données au serveur, mais le serveur peut aussi 
+envoyer des données au client.
+2. Full duplex
+"Full duplex" signifie que l'envoi et la réception peuvent se faire en 
+même temps.
+Par exemple:
+Client -----------------> Serveur
+       "Bonjour"
+
+Client <----------------- Serveur
+       "Salut"
+Les deux flux sont indépendants.
+C'est différent du half duplex où un seul côté peut parler à la fois (comme 
+certains talkies-walkies).
+3. Orientée fux d'octets (byte stream)
+C'est la partie la plus importante à comprendre.
+TCP ne transporte pas des "messages", mais un flux continu d'octets.
+Supposons que le client fasse:
+    </> C 
+    send(sock, "Bonjour", 7, 0);
+    send(sock, "Salut", 5, 0);
+Le serveur pourrait recevoir:
+    </> C 
+    recv(sock, buf, ...);
+et obtenir:
+    BonjourSalut
+en une seule fois.
+Ou:
+    Bon 
+    jourSa 
+    lut 
+en plusieurs appels à recv().
+TCP garantit:
+- l'ordre des octets;
+- qu'ils arrivent sans erreur.
+Mais TCP ne garantit pas que chaque send() correspondra à un recv().
+Pour TCP, il existe simplement un flux:
+    B o n j o u r S a l u t 
+qui coule du client vers le serveur.
+
+Analogie 
+Imaginons un tuyau d'eau:
+    Client ==========> Serveur
+- TCP est comme un tuyau.
+- On verse des octets d'un côté.
+- Ils ressortent dans le même ordre de l'autre côté.
+- Le tuyau ne conserve pas les frontières entre les différents versements.
+C'est pour cela que les protocoles applicatifs (HTPP, SMTP, IRC, etc.)
+définissent leurs propres séparateurs (\n, taille du message, en-têtes, etc)
+pour savoir où commence et où finit un message.

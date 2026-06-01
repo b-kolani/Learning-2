@@ -1,0 +1,63 @@
+connect() demande au système d'exploitation d'établir 
+une connexion avec une socket distante.
+
+Quand on écrit:
+    </> C 
+    connect(sock, (struct sokaddr *)&addr, sizeof(addr));
+On ne passe qu'une seule socket (sock), celle du client.
+
+L'autre socket (celle du serveur) existe déjà et est en attente 
+grâce à:
+    </> C 
+    socket(...)
+    bind(...)
+    listen(...)
+Lorsque le client appelle connect():
+Client                          Serveur
+------                          -------
+socket()                        socket()
+                                bind()
+                                listen()
+
+connect()  ------------->       (attend)
+
+                                accept()
+
+TCP effectue alors le three-way handshake:
+Client                Serveur
+  SYN      --------->
+           <--------- SYN+ACK
+  ACK      --------->
+
+Une fois cet échange terminé:
+- la socket du client est connectée;
+- le serveur obtient une nouvelle socket connectée via accept().
+
+On se retrouve avec:
+Client socket  <==== TCP ====>  Socket retournée par accept()
+C'est cette paire de sockets qui servira à échanger les données.
+
+Point important
+Le serveur possède en réalité deux types de sockets:
+1. La socket d'écoute (créée avec socket() puis listen())
+    - elle attend les connexions;
+    - elle ne sert pas à échanger les données.
+2. La socket connectée (retournée par accept())
+    - elle est liée à un client précis;
+    - on utilise send(), recv(), read(), write() dessus.
+Par exemple:
+    </> C 
+    int listenfd = socket(...);
+
+    bind(listenfd, ...);
+    listen(listenfd, 10);
+
+    int clientfd = accept(listenfd, NULL, NULL);
+
+Après accept():
+listenfd  -> continue d'écouter d'autres clients
+clientfd  -> connecté à un client précis
+
+Donc on peut dire que connect() étabit une connexion TCP entre la socket 
+du client et une socket que le serveur créera via accept(), plutôt que 
+simplement "connecter deux sockets déjà existantes".

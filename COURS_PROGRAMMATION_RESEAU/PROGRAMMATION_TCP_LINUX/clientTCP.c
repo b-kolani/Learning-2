@@ -39,7 +39,7 @@ int main()
     pointDeRencontreDistant.sin_port = htons(IPPORT_USERRESERVED);  // = 5000
     // On choisit l'adresse IPv4 du serveur
     // à modifier selon les besoins
-    if (inet_aton("192.168.52.2", &pointDeRencontreDistant.sin_addr) == 0) {
+    if (inet_aton("127.0.0.1", &pointDeRencontreDistant.sin_addr) == 0) {
         perror("inet_aton");
         close(descripteurSocket);
         exit(-1);
@@ -53,7 +53,6 @@ int main()
         close(descripteurSocket); // On ferme la ressource avant de quitter
         exit(-2); // On sort en indiquant un code erreur
     }
-
     //--- Fin de l'étape numéro 2 !
     printf("Connexion au serveur réussie avec succès ! \n");
 
