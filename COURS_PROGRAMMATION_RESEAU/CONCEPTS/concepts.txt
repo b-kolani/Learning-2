@@ -1,0 +1,3 @@
+htons
+htonl
+IPPORT_USERRESERVED

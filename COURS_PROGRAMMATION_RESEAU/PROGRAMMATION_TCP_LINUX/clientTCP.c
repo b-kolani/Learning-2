@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h> /* pour exit */
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <unistd.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <string.h>
+
+int main()
+{
+    int descripteurSocket;
+    struct sockaddr_in pointDeRencontreDistant;
+    socklen_t longueurAdresse;
+
+    //--- Début de l'étape numéro 1:
+    // Créer une socket de communication
+    descripteurSocket = socket(PF_INET, SOCK_STREAM, 0); /* 0 indique que l'on
+    utilisera le protocole par défaut associé à SOCK_STREAM soit TCP */
+
+    // Teste la valeur renvoyée par l'appel systeme socket()
+    if (descripteurSocket < 0)
+    {                     /* échec ? */
+        perror("socket"); // Affiche le message d'erreur
+        exit(-1);         // On sort en indiquand un code erreur
+    }
+
+    //-- Fin de l'étape numéro 1 !
+    printf("Socket créée avec succès ! (%d)\n", descripteurSocket);
+
+    //--- Début de l'étape numéro 2:
+    // Obtient la longueur en octets de la structure sockaddr_in
+    longueurAdresse = sizeof(pointDeRencontreDistant);
+    // Initialise à 0 la structure sockaddr_in
+    memset(&pointDeRencontreDistant, 0x00, longueurAdresse);
+    // Renseigne la structure sockaddr_in avec les informations du serveur distant
+    pointDeRencontreDistant.sin_family = PF_INET;
+    // On choisit le numéro de port d'écoute du serveur
+    pointDeRencontreDistant.sin_port = htons(IPPORT_USERRESERVED);  // = 5000
+    // On choisit l'adresse IPv4 du serveur
+    // à modifier selon les besoins
+    if (inet_aton("192.168.52.2", &pointDeRencontreDistant.sin_addr) == 0) {
+        perror("inet_aton");
+        close(descripteurSocket);
+        exit(-1);
+    }
+
+    // Débute la connexion vers le processus serveur distant
+    if ((connect(descripteurSocket,
+                 (const struct sockaddr *)&pointDeRencontreDistant, longueurAdresse)) == -1)
+    {
+        perror("connect"); // Affiche le message d'erreur
+        close(descripteurSocket); // On ferme la ressource avant de quitter
+        exit(-2); // On sort en indiquant un code erreur
+    }
+
+    //--- Fin de l'étape numéro 2 !
+    printf("Connexion au serveur réussie avec succès ! \n");
+
+    // On ferme la ressource avant de quitter
+    close(descripteurSocket);
+    return (0);
+}
