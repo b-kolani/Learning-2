@@ -1,4 +1,4 @@
-Relational Database Management System 
+Relational Database Management System (RDBMS or ORDBMS)
 Systeme de Gestion de Base de Donnees Relationnelle (SGBDR)
 Fait reference a un logiciel qui permet de creer, stocker 
 et gerer des DB relationnelles 

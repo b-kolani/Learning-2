@@ -1,0 +1,79 @@
+Un Data Warehouse (entrepôt de données) est une 
+grande base de données spécialement conçue pour 
+l'analyse et le reporting, et non pour les opérations 
+quotidiennes de l'entreprise.
+Prenons un exemple.
+Base de données opérationnelle 
+Une entreprise de télécommunication possède:
+- une base pour les clients;
+- une base pour les factures;
+- une base pour les abonnements;
+- une base pour les appels téléphoniques.
+Ces bases sont utilisées en permanence par les applications de 
+l'entreprise. 
+
+Data Warehouse
+Pour faire des analyses, on copie régulièrement les données
+de toutes ces bases dans un seul endroit:
+Clients  ──┐
+           │
+Factures ──┼──► Data Warehouse
+           │
+Appels   ──┤
+           │
+API      ──┘
+Le Data Warehouse sert à répondre à des questions:
+- combien de nouveaux clients ce mois-ci ?
+- Quel est le chiffre d'affaires par région ?
+- Quels abonnements sont les plus vendus ?
+- Quel est le taux de résiliation ?
+
+C'est souvent l`a que des outils comme Power BI vont chercher 
+les données pour créer des tableaux de bord.
+
+Optimisation d'un Data Warehouse:
+Avec le temps, l'entrepôt peut contenir:
+- des centaines de millions de lignes;
+- des dizaines ou centaines de tables;
+- des requêtes très lourdes.
+L'optimisation consiste à rendre les analyses plus rapides et moins 
+coûteuses.
+
+Par exemple:
+1. Créer des index
+Sans index:
+    </> SQL 
+    SELECT * 
+    FROM clients 
+    WHERE cille = 'Casablanca';
+La base peut parcourir des millions de lignes.
+Avec un index sur ville, la recherche devient beaucoup plus rapide.
+
+2. Améliorer le modèle de données
+Une table mal conçue:
+ventes
+--------------------------------
+id
+date
+client
+ville
+pays
+region
+...
+peut être transformée en un schéma plus adapté à l'analyse:
+fact_ventes
+dim_client
+dim_temps
+dim_region
+On parle souvent de schéma en étoile (Star Schema).
+
+3. Optimiser les pipelines ETL 
+Au lieu de recharger toute la base chaque nuit:
+    10 millions de lignes 
+on ne charge que les nouvelles données:
+    5000 nouvelles lignes 
+Cela économise beaucoup de temps. 
+
+4. Optimiser les requêtes SQL 
+Par exemple remplacer certaines requêtes lentes par des versions 
+plus efficace.

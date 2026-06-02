@@ -1,0 +1,61 @@
+Apache Airflow sert à automatiser les tâches 
+liées aux données.
+
+Imaginons que chaque nuit on dove:
+1. Récupérer des données depuis une API.
+2. Les nettoyer 
+3. Les stocker dans PostgreSQL.
+4. Générer un rapport.
+
+Sans Airflow:
+Humain
+  │
+  ├── Lance script 1
+  ├── Lance script 2
+  ├── Lance script 3
+  └── Lance script 4
+
+Avec Airflow:
+Airflow
+   │
+   ├── API
+   ├── Nettoyage
+   ├── PostgreSQL
+   └── Reporting
+Tout est exécuté automatiquement.
+
+Exemple concret d'un pipeline Airflow
+Tous les jours à 2h du mat:
+
+2h00
+ │
+ ▼
+Télécharger ventes API
+ │
+ ▼
+Nettoyer données
+ │
+ ▼
+Charger PostgreSQL
+ │
+ ▼
+Mettre à jour Power BI
+
+Si une étape échoue, Airflow le signale.
+
+Comment fonctionne t-il avec d'autres outils ?
+Un Data Engineer peut construire quelque chose comme:
+API Shopify
+      │
+      ▼
+ Airflow
+      │
+      ▼
+ PostgreSQL
+      │
+      ▼
+ Power BI
+- API -> source des données
+- Airflow -> automatisation des traitements 
+- PostgreSQL -> stockage
+- Power BI -> visualisation

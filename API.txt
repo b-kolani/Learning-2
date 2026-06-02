@@ -1,0 +1,38 @@
+API (Application Programming Interface)
+Une API permet à un programme de communiquer avec 
+un autre programme.
+Par exemple, notre application veut récupérer la météo:
+Ton application
+       │
+       ▼
+      API
+       │
+       ▼
+Serveur météo
+On envoie une requête:
+    </> http 
+    GET /weather/casablanca 
+Et on reçoit:
+    </> JSON 
+    {
+        "city": "casablanca",
+        "temperature": 28 
+    }
+
+Pourquoi un Data Engineer utilie des APIs ?
+Pour récupérer des données depuis:
+- des sites web;
+- des applications métiers;
+- des services cloud;
+- des réseaux sociaux;
+- des plateformes e-commerce.
+exemple:
+
+API Shopify
+      │
+      ▼
+ Pipeline ETL
+      │
+      ▼
+ PostgreSQL
+

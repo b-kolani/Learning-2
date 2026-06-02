@@ -1,0 +1,117 @@
+PostgreSQL n'est pas limité aux tables relationnelles 
+classiques. Il peut aussi stocker et interroger des 
+données au format JSON. 
+
+1. Requêtes relationnelles (SQL)
+C'est l'utilisation traditionnelle d'une base relationnelle
+Par exemple:
+Tables users 
+| id | name |
+| -- | ---- |
+| 1  | Ali  |
+| 2  | Sara |
+
+    </> SQL 
+    SELECT * 
+    FROM users 
+    WHERE id = 1;
+Ici les données sont organisées en:
+- tables;
+- colonnes;
+- lignes;
+- relations entre tables.
+C'est le modèle relationnel classique.
+
+2. Requêtes non relationnelles (JSON)
+PostgreSQL possède un type spéciale appelé JSON et surtout JSONB.
+
+On peut stocker un document enteir dans une colonne.
+
+    </> SQL 
+    CREATE TABLE products (
+        id SERIAL PRIMARY KEY,
+        data JSONB
+    );
+Puis:
+    </> SQL 
+    INSERT INTO products(data)
+    VALUES (
+        '{
+            "name": "Laptop",
+            "price": 1200,
+            "brand": "Dell"
+
+    }');
+La colonne data contient un document JSON complet.
+
+Interroger le JSON
+On peut rechercher à l'intérieur du document:
+    </> SQL 
+    SELECT data ->>'name'
+    FROM products;
+Résultat:
+    Laptop
+Ou:
+    </> SQL 
+    SELECT * 
+    FROM products
+    WHERE data->>'brand' = 'Dell';
+
+Pourquoi dit-on "non relationnel" ?
+Parce qu'on se rapproche du fonctionnement d'une base NoSQL comme:
+- MongoDB 
+- CouchDB 
+Dans MongoDB, on stocke directement:
+    </> JSON 
+    {
+        "name": "Laptop",
+        "price": 1200,
+        "brand": "Dell"
+    }
+PostgreSQL peut faire quelque chose de similaire grâce à JSONB.
+
+Exemple de comparaison 
+Approche relationnelle 
+users
+-----
+id
+name
+
+addresses
+---------
+id
+user_id
+city
+country
+Il faut faire des JOIN.
+
+Approche JSON 
+    </> JSON 
+    {
+        "name": "Ali",
+        "address": {
+            "city": "Casablanca",
+            "country": "Morocco"
+        }
+    }
+Tout est dans le même document.
+
+Est-ce que PostgreSQL devient MongoDB ?
+Non.
+PostgreSQL reste avant tout une base relationnelle:
+- transaction ACID;
+- clés étrangères;
+- JOIN;
+- contraintes;
+- SQL complet.
+Le support JSON est une fonctionnalité supplémentaire.
+C'est pourquoi on dt souvent que PostgreSQL est une base 
+hybride:
+PostgreSQL
+├── SQL relationnel classique
+└── Documents JSONB
+
+Résumé:
+    PostgreSQL permet de traviller à la fois avec des tables relationnelles 
+classiques et avec des documents JSON, sans avoir besoin d'utiliser une 
+autre base de données.

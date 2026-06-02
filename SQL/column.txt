@@ -1,2 +1,2 @@
-In SQL a column or field is a vrtical entity in a table,
+In SQL a column or field or property is a vertical entity in a table,
 and holds a set of data values of a particular type.

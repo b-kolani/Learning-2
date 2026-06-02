@@ -1,0 +1,162 @@
+1. PostgreSQL 
+PostgreSQL est le serveur de base de données.
+C'est lui qui:
+- stocke les données;
+- exécute les requêtes SQL;
+- gère les connexions;
+- gère les utilisateurs et permissions.
+On peut le voir comme un programme qui tourne en arrière-plan.
+Application
+      │
+      ▼
+ PostgreSQL
+      │
+      ▼
+   Données
+2. psql 
+psql est un client en ligne de commande.
+Il permet de se connecter à PostgreSQL et d'exécuter des requêtes.
+Exemple:
+    </> Bash
+    psql -U postgres -d mydb 
+Puis:
+    </> SQL 
+    SELECT * FROM users;
+On l'utilise surtout pour:
+- apprendre SQL;
+- administrer la base;
+- tester rapidement des requêtes;
+- automatiser des tâches dans des scripts.
+
+3. pgAdmin 
+pgAdmin est une interface graphique pour PostgreSQL.
+Au lieu d'écrire:
+    </> SQL 
+    SELECT * FROM users;
+dans un terminal, on peut:
+- voir les bases;
+- voir les tables;
+- exécuter des requêtes;
+- créer des utilisateurs;
+- créer des index;
+avec une interface visuelle.
+PostgreSQL
+    ▲
+    │
+┌─────────┐
+│ pgAdmin │
+└─────────┘
+
+Lequel utiliser dans une application qu'on a conçue ?
+Aucun des deux.
+Une application ne parle ni à psql ni à pgAdmin.
+Elle parle directement à PostgreSQL via un driver.
+
+Application
+      │
+      ▼
+   Driver
+      │
+      ▼
+ PostgreSQL
+
+4. C'est quoi un driver ?
+Un driver est une bibliothèque qui sait communiquer avec PostgreSQL.
+Par exemple, PostgreSQL comprend un protocole réseau spécifique.
+Notre programme ne va pas envoyer directement:
+    </> SQL 
+    SELECT * FROM users;
+sur le réseau. 
+Le driver:
+- ouvre la connexion TCP;
+- authentifie l'utilisateur;
+- envoie la requête;
+- récupère les résultats;
+- les convertit dans le langage utilisé. 
+
+Exemple avec Node.js 
+Le driver PostgreSQL le plus connu est node-postgres.
+    </> JavaScript
+    import { Client } from "pg";
+
+    const client = new Client({
+        host: "localhost",
+        user: "postgres",
+        password: "1234",
+        database: "test"
+    });
+
+    await client.connect();
+
+    const result = await client.query(
+        "SELECT * FROM users"
+    );
+
+    console.log(result.rows);
+Ici:
+
+Application Node.js
+       │
+       ▼
+ Driver pg
+       │
+       ▼
+ PostgreSQL
+
+Exemple en Python
+Le driver peut être psycopg:
+    </> Python 
+    import psycopg
+
+    conn = psycopg.connect(
+        "dbname=test user=postgres"
+    )
+
+    cur = conn.cursor()
+
+    cur.execute(
+        "SELECT * FROM users"
+    )
+
+    print(cur.fetchall())
+
+Exemple en C 
+On utilise souvent la bibliothèque PostgreSQL appelée libpq.
+
+    </> C 
+    PGconn *conn = 
+        PQconnectdb(
+            "dbname=test user=postgres"
+        );
+    Ici libpq est le driver.
+
+Et Prisma dans tout ça ?
+Qunad on écrit:
+    </> JavaScript
+    const users = await prisma.user.findMany();
+Prisma agit comme une couche supplémentaire:
+Ton code
+    │
+    ▼
+ Prisma
+    │
+    ▼
+ Driver PostgreSQL
+    │
+    ▼
+ PostgreSQL
+
+Prisma finit quand même par utiliser un driver pour parler à PostgreSQL.
+
+Résumé 
+| Élément    | Rôle                                                                       |
+| ---------- | -------------------------------------------------------------------------- |
+| PostgreSQL | Serveur de base de données                                                 |
+| psql       | Client terminal pour administrer PostgreSQL                                |
+| pgAdmin    | Interface graphique pour administrer PostgreSQL                            |
+| Driver     | Bibliothèque utilisée par une application pour communiquer avec PostgreSQL |
+| Prisma     | ORM qui s'appuie sur un driver PostgreSQL                                  |
+Dans un projet réel, on utilise souvent:
+- PostgreSQL comme serveur;
+- psql ou pgAdmin pour l'administration et les tests;
+- un driver (pg, libpq, psycopg, etc.) dans notre app.

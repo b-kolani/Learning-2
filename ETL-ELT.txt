@@ -1,0 +1,178 @@
+ELT = Extract Load Transform
+Les pipelines ETL/ELT sont au cœur du travail d'
+un Data Engineer.
+Le mot pipeline signifie simplement:
+    une série d'étapes automatisées qui transforment des 
+    données d'un point A vers un point B. 
+ETL = Extract, Transform, Load 
+1. Extract (Extraire)
+On récupère les données depuis une source.
+Par exemple:
+    API Shopify 
+    Base PostgreSQL
+    Fichier CSV 
+    MongoDB 
+
+Exemple:
+    API Shopify
+      │
+      ▼
+  Commandes clients
+
+2. Transform (Transformer)
+On nettoie ou modifie les données.
+Supposons qu'une API renvoie:
+    </> JSON 
+    {
+        "first_name": "Ali",
+        "last_name": "Ahmadi",
+        "country": "MA"
+    }
+On peut transformer cela en:
+    </> JSON 
+    {
+        "full_name": "Ali Ahmadi",
+        "country": "Morocco"
+    }
+Ou:
+- supprimer les doublons;
+- corriger les erreurs;
+- convertir les devises;
+- calculer des stats.
+
+3. Load (Charger)
+On stocke les données dans leur destination finale.
+Par exemple:
+API
+ │
+ ▼
+Transformation
+ │
+ ▼
+PostgreSQL
+
+ou 
+
+API
+ │
+ ▼
+Transformation
+ │
+ ▼
+Data Warehouse
+
+Exemple complet:
+UNe boutique en ligne veut analyser ses ventes.
+Tous les jours:
+API Shopify
+     │
+     ▼
+Télécharger les commandes
+     │
+     ▼
+Nettoyer les données
+     │
+     ▼
+Calculer le chiffre d'affaires
+     │
+     ▼
+Charger dans PostgreSQL
+     │
+     ▼
+Power BI
+C'est une pipeline ETL.
+
+ELT: on verra souvent ELT.
+Au lieu de:
+Extract
+   │
+Transform
+   │
+Load
+on fait:
+Extract
+   │
+Load
+   │
+Transform
+
+Pourquoi ?
+Les Data Warehouses modernes sont strès puissants.
+Au lieu de transformer les données sur une machine intermédiaire:
+API
+ │
+ ▼
+Machine ETL
+ │
+ ▼
+PostgreSQL
+on charge directement:
+API
+ │
+ ▼
+Data Warehouse
+ │
+ ▼
+Transformation SQL
+
+Exemple ETL 
+CSV
+ │
+ ▼
+Nettoyage Python
+ │
+ ▼
+PostgreSQL
+
+Les données sont nettoyées avant d'être chargées.
+
+Exemple ELT 
+CSV
+ │
+ ▼
+PostgreSQL
+ │
+ ▼
+Requêtes SQL de transformation
+
+Les données sont chargées d'abord puis transformées.
+
+Pour orchestrer le pipeline on utilise Airflow.
+Par exemple:
+2h00
+ │
+ ▼
+Télécharger API
+ │
+ ▼
+Nettoyer données
+ │
+ ▼
+Charger PostgreSQL
+ │
+ ▼
+Envoyer rapport
+Airflow lance automatiquement chaque étape. 
+
+En réalité, on a souvent fait de petites versions 
+d'ETL sans connaître le nom.
+Par exemple avec Node.js:
+-> Extract 
+    </> JavaScript
+    const users = await fetch(API_URL);
+
+-> Transform
+    </> JavaScript
+    const activeUsers = 
+        users.filter(u => u.active);
+
+-> Load 
+    await prisma.user.createMany(...)
+On a donc déjà manipulé la logique ETL à petite échelle.
+Le Data Engineering consiste surtout à faire la même chose 
+mais avec:
+- des millions de lignes;
+- plusieurs sources de données;
+- de l'automatisation;
+- des Data Warehouses;
+- des outils comme Airflow et Power BI.

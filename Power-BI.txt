@@ -1,0 +1,33 @@
+Power BI est un outil d'analyse de données et 
+de création des tableaux de bord.
+
+Il permet de transformr des données en graphiques.
+
+Par exemple:
+
+PostgreSQL
+     │
+     ▼
+ Power BI
+     │
+     ▼
+ Dashboard
+
+On peut obtenir:
+- chiffre d'affaires mensuel;
+- nombre de clients;
+- ventes par région;
+- évolution des abonnements.
+
+Exemple 
+Au lieu de voir:
+| Mois    | Ventes |
+| ------- | ------ |
+| Janvier | 100    |
+| Février | 150    |
+| Mars    | 220    |
+
+Power BI crée automatiquement:
+    📈 Graphique des ventes 
+Les managers adorent ce genre de visualisation.
+
