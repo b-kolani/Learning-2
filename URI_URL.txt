@@ -1,0 +1,60 @@
+Les termes URI et URL sont liés, mais ils ne désignent 
+pas exactement la même chose.
+
+URI(Uniform Resource Identifier)
+Un URI est un identifiant permettant de désigner une ressource 
+de manière unique.
+
+Exemples:
+https://example.com/page
+mailto:john@example.com
+tel:+212600000000
+urn:isbn:9780131103627
+Tous ces exemples sont des URI car ils identifient une ressource.
+
+URL (Uniform Resource Locator)
+Une URL est un type particulier d'URI qui indique où se 
+la ressource et comment y accéder
+Exemples:
+https://example.com/page
+ftp://files.example.com/data.zip
+https://api.example.com/users/42
+
+Une URL contient généralement:
+https://example.com/page
+│      │           │
+│      │           └── chemin (path)
+│      └────────────── hôte (host)
+└───────────────────── protocole (scheme)
+Elle fournit donc une localisation.
+
+Relation entre les deux 
+On peut voir cela ainsi:
+URI
+├── URL
+└── URN
+- URL -> indique où se trouve la ressource.
+- URN (Uniform Resource Name) -> indique seulement 
+son nom unique.
+Exemples d'URN:
+urn:isbn:9780131103627
+CEt identifiant désigne un livre mais ne dit pas 
+où le trouver.
+
+Dans le développement Web:
+Quand on écrit:
+    </> JavaScript 
+    fetch("https://api.example.com/users")
+la chaîne passée à fetch() est une URL.
+Dans la documentation web moderne, on verra souvent 
+le mot URI utilisé comme terme générique, mais dans 
+des cas pratiques (API REST, navigateur, Node.js, Express,
+Fastify), on manipule principalement des URL.
+
+En résumé:
+| Terme    | Rôle                                                            |
+| -------- | --------------------------------------------------------------- |
+| URI      | Identifie une ressource                                         |
+| URL      | Identifie une ressource **et** indique où/comment y accéder     |
+| Relation | Toute URL est un URI, mais tout URI n'est pas forcément une URL |
+

@@ -1,0 +1,24 @@
+Pourquoi utiliser /static lorsqu'on sert des fichiers 
+statiques depuis notre app Express?
+Cela évite d'exposer directement la structure du serveur.
+Par exemple:
+    </> JavaScript 
+    app.use('/uploads', express.static('files'));
+permet d'accéder à:
+    files/photo.jpg 
+via:
+    http://localhost:3000/uploads/photo.jpg 
+sans que le client sache que le dossier s'appelle réellement files.
+
+En résumé:
+    </> JavaScript
+    app.use('/static', express.static('files'));
+
+signifie:
+    "Quand une requête commence par /static, cherche le fichier correspondant 
+    dans le dossier files."
+
+Ainsi:
+    /static/cat.jpg 
+    ->
+    files/cat.jpg 

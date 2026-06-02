@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <link rel="stylesheet" href="http://127.0.0.1:3000/static/css/styles.css">
+    <script src="http://localhost:3000/static/js/app.js" defer></script>
+</head>
+
+<body>
+    <p id="test">Laoding...</p>
+    <img src="http://localhost:3000/static/images/kitten.jpg" alt="">
+    <script>
+        async function talkToBack() {
+            const header = document.getElementById("test");
+            try {
+                const response = await fetch("http://127.0.0.1:3000");
+                if (!response.ok) {
+                    console.error("Unable to talk to the backend!");;
+                    return;
+                }
+                const msgFromBack = await response.text();
+                header.innerText = msgFromBack;
+                header.style.textAlign = "center";
+                header.style.fontStyle = "italic";
+                header.style.fontSize = "30px";
+            } catch (err) {
+                console.error("Something Went wrong:", err);
+            }
+        }
+        talkToBack();
+        async function fetchStaticFileContentFromBack() {
+            await fetch("http://localhost:3000/static/data.json").then(async (res) => {
+                if (!res.ok) {
+                    console.error("Unable to fecth the static file content!");
+                    return;
+                }
+                const data = await res.json();
+                console.log(data);
+            }).catch((err) => console.error("Something went wrong:", err));
+        }
+        fetchStaticFileContentFromBack();
+    </script>
+</body>
+
+</html>
