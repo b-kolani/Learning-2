@@ -1,4 +1,4 @@
-Le cross-compiling (compilation croisee) consiste a comipler
+Le cross-compiling (compilation croisee) consiste a compiler
 un programme sur une machine pour qu'il sexecute sur une autre
 plateforme.
 

@@ -1,0 +1,109 @@
+Le double buffering est une technique utilisée 
+en graphisme pour éviter le scintillement (flickering)
+et les affichages partiels à l'écran.
+
+Le problème sans double buffering
+Imaginons qu'on dessine un jeu:
+1. On efface l'écran 
+2. On dessine le joueur.
+3. On dessine les ennemis.
+4. On dessine le décor.
+
+Si l'écran est affiché pendant que ces étapes sont en cours,
+l'utilisateur peut voir des images incomplètes:
+- écran vide,
+- seulement le joueur,
+- puis le joueur + les ennemis,
+- puis l'image finale 
+Cela provoque des clignotements.
+
+Solution: deux buffers
+On utilise deux zones mémoire:
+- Front Buffer: ce qui est actuellement affiché à l'écran.
+- Back Buffer: une image cachée sur laquelle on dessine.
+
+Le processus devient:
+
+Back Buffer
+├─ Effacer
+├─ Dessiner le décor
+├─ Dessiner les joueurs
+├─ Dessiner les ennemis
+└─ Image terminée
+
+Swap Buffers
+
+Front Buffer ← Back Buffer
+
+Quand l'image est entièrement prête, on échange (swap)
+les deux buffers en un seul opération.
+
+L'utilisateur ne voit donc que des images complètes.
+
+Schéma
+Sans double buffering:
+
+Ecran
+  ↓
+Effacer
+Dessiner joueur
+Dessiner ennemi
+Dessiner décor
+
+L'utilisateur voit toutes les étapes.
+
+Avec double buffering:
+Back Buffer (caché)
+  ↓
+Effacer
+Dessiner joueur
+Dessiner ennemi
+Dessiner décor
+  ↓
+Swap
+  ↓
+Front Buffer (visible)
+
+L'utilisateur ne voit que le résultat final.
+
+Dans SDL2 (librairie graphique)
+Par exemple:
+    </> C++ 
+    SDL_RenderClear(renderer);
+
+    SDL_RenderCopy(renderer, texture1, NULL, &rect1);
+    SDL_RenderCopy(renderer, texture2, NULL, &rect2);
+
+    SDL_RenderPresent(renderer);
+Ici:
+- SDL_RenderClear() et SDL_RenderCopy() dessinent dans le back buffer.
+- SDL_RenderPresent() effectue le swap vers le front buffer.
+
+SDL2 utilise déjà le double buffering pour nous.
+
+Dans Cub3D (MiniLibX)
+Lorsqu'on fait:
+    </> C 
+    img = mlx_new_image(...);
+on dessine généralement dans le buffer de cette image:
+    </> C 
+    mlx_put_pixel(img, x, y, color);
+Puis on affiche l'image complète:
+    </> C 
+    mlx_put_image_to_window(...);
+
+C'est déjà une forme de double buffering: on construit 
+toute l'image en mémoire avant avant de l'envoyer à la 
+fenêtre.
+
+Triple buffering
+Il existe aussi le triple buffering:
+- Front Buffer (affiché)
+- Back Buffer 1 
+- Back Buffer 2 
+Cela peut améliorer la fluidité lorsque le GPU produit 
+les images plus vite ou plus lentement que l'écran,
+mais utilise davantage de mémoire. 
+
+Le double buffering reste la technique la plus courante 
+dans les moteurs 2D, SDL2, OpenGL et les navigateurs web.
