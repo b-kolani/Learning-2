@@ -1,0 +1,104 @@
+En C++ il exitse deux grands concepts:
+1. Le contexte global (en dehors des fonctions).
+2. Le contexte d'exécution (à l'intérieur des fonctions).
+
+Certaines instructions n'ont de sens que lorsque le 
+programme est en train de s'exécuter.
+
+Ce qui est autorisé au niveau global
+On peut déclarer des types:
+    </> C++
+    enum class side {
+        LEFT,
+        RIGHT,
+        NONE
+    };
+des variable:
+    </> C++
+    int globalValue = 42;
+des fonctions:
+    </> C++
+    void hello();
+
+des classes:
+    </> C++ 
+    class Player
+    {
+        ...
+    };
+
+Ce qui n'est pas autorisé au niveau global 
+Par exemple:
+    </> C++ 
+    int x = 0;
+    x = 5; // Erreur 
+
+Pourquoi ?
+Parce que:
+    </> C++ 
+    x = 5;
+est une instruction a exécuter. 
+
+Le compilateur se demande:
+    "Quand dois-je exécuter cette instruction ?"
+Il n'y a aucune fonction en cours d'exécution, donc cela n'a 
+pas de sens.
+
+À l'intérieur d'une fonction
+Là, le programme possède un flot d'exécution:
+    </> C++ 
+    int main()
+    {
+        int x = 0;
+        x = 5;
+
+        std::cout << x;
+    }
+Le compilateur sait que:
+1. x est créé.
+2. x = 5 est exécuté.
+3. std::cout << x est exécuté.
+
+Exemple avec une boucle 
+Ceci est interdit:
+    </> C++ 
+    for (int i = 0; i < 10; i++)
+    {
+        ...
+    }
+    au niveau global.
+Une boucle signifie:
+    Répéter une action plusieurs ois. 
+C'est une action à exécuter, donc elle doit être dans une fonction.
+
+Pourquoi une initialisation est autorisée ?
+Par exemple:
+    </> C++ 
+    int x = 42;
+    au niveau global.
+Ce n'est pas une instruction indépendante. C'est une déclaration avec 
+initialisation.
+
+Le compilateur utilise cette information pour préparer la variable 
+avamt que main() ne commence.
+
+Une façon de voir les choses
+Le fichier C++ est un peu comme un plan:
+    </> C++ 
+    class Player {};
+    void  update();
+    int score = 0;
+Le plan décrit:
+- les types,
+- les variables,
+- les fonctions.
+
+Puis, quand notre programme démarre:
+    </> C++ 
+    int main()
+    {
+        update();
+    }
+on entre dans le monde de l'exécution. C'est là que les 
+instructions (if, for, affectations, appels de fonctions, etc.)
+peuvent être exécutées.

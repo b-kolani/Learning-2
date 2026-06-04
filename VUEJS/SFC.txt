@@ -1,0 +1,4 @@
+Single-File Component (also known as *.vue files).
+A Vue SFC, encapsulates the component's logic 
+(JavaScript), template (HTML), and styles (CSS)
+in a single file.
