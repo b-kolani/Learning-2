@@ -1,0 +1,56 @@
+type="importmap" pour l'élément script HTML 
+est une fonctionnalité moderne des navigateurs 
+qui permet de définir des alias pour les 
+imports JavaScript.
+
+Sans import map, si on veut importer un module 
+dans le navigateur, on doit souvent écrire  l'URL 
+complète:
+    </> HTML 
+    <script type="module">
+        import { someModule } from "https://someModuleUrl.com/someModule.js";
+    </script>
+
+Avec un import map 
+On peut définir un alias:
+    </> HTML 
+    <script type="importmap">
+    {
+        "imports": {
+            "someModule": "https://someModuleUrl.com/someModule.js"
+        }
+    }
+    </script> 
+Puis dans notre module:
+    </> HTML
+    <script type="module">
+        import { someModule } from 'someModule';
+    </script>
+
+Le navigateur remplace automatiquement:
+    </> JavaScript
+    import { someModule } from "vue";
+par:
+    </> JavaScript
+    import { someModule } from "https://someModuleUrl.com/someModule.js";
+
+Pourquoi c'est utile ?
+Normalement, le navigateur ne sait pas résoudre:
+    </> JavaScript
+    import { someModule } from "someModule";
+Il ne connaît pas ce qu'est "someModule".
+
+Les import maps lui donnent la correspondance
+    </> JSON 
+    {
+        "someModule": "https://someModuleUrl.com/someModule.js"
+    }
+
+Les import maps sont surtout utiles quand on travaille 
+sans Vite, Webpack ou autre bundler, directement dans le navigateur.
+Ces bundlers savent comment résoudre un import:
+someModule
+ ↓
+node_modules/someModule
+ ↓
+fichiers réels
