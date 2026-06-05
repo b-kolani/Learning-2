@@ -1,0 +1,3 @@
+In Vue the text interpolation used the "Mustache" syntax 
+(double curly braces) like this:
+    <span>Message: {{ msg }}</span>

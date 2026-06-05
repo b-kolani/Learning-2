@@ -1,0 +1,18 @@
+la directive v-html est l'équivalent de 
+    </> JavaScript 
+    element.innerHTML = message;
+qui permet d'insérer du HTML brut dans un élément.
+Il interprète les balises HTML. Si par exemple 
+message = '<h1>Bonjour</h1>';
+
+En vue on fait:
+    </> vue 
+    <template>
+        <div v-html="message"></div>
+    </template>
+Vue produit:
+    </> HTML 
+    <div>
+        <h1>Bonjour</h1>
+    </div>
+Le navigateur affiche alors un vrai titre

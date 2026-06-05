@@ -1,0 +1,3 @@
+git clone --depth=16 option tells Git to pull 
+down only the last 16 commits. This makes 
+the download much smaller and faster.

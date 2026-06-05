@@ -1,0 +1,1 @@
+const jsstringCode =/*javascript*/`console.log('Hello World');`
