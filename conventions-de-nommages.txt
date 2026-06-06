@@ -1,0 +1,6 @@
+| Convention | Exemple       |
+| ---------- | ------------- |
+| kebab-case | `hello-world` |
+| snake_case | `hello_world` |
+| camelCase  | `helloWorld`  |
+| PascalCase | `HelloWorld`  |

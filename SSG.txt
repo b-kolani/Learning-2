@@ -1,0 +1,13 @@
+En Angular JS SSG signifie Static Site Generation ou Prerendering:
+Les pages HTML sont générées à l'avance lors du build.
+Par exemple:
+    ng build 
+peut produire:
+dist/
+├── index.html
+├── about.html
+└── contact.html
+
+Ces pages peuvent être servies directement sans exécuter 
+Angular sur le serveur.
+
