@@ -9,6 +9,7 @@
     <div>
         <h1 id="message"></h1>
         <div id="posts"></div>
+        <button onclick="addPost()">Add Post</button>
     </div>
     <script>
         const header = document.getElementById('message');
@@ -32,18 +33,53 @@
                 return;
             }
             const posts = await response.json().then((data) => data.allPosts);
-            const p = document.createElement('p');
-            console.log(posts);
             for (let i = 0; i < posts.length; i += 1) {
-                p.innerText += "Title: " + posts[i].title +
-                               '\n'  + 
-                               "Content: " + posts[i].content +
-                               '\n' + 
-                               "Author: " + posts[i].author.name;
+                const p = document.createElement('p');
+                p.style.border = "1px solid ";
+                p.style.borderRadius = "5px";
+                p.style.maxWidth = "300px";
+                p.style.maxHeight = "100px";
+                p.style.padding = "5px";
+                p.innerHTML += /*HTML*/`
+                            <strong>Title:</strong> <em>${posts[i].title}</em>
+                               <br> 
+                            <strong>Content</strong>: <em>${posts[i].content}</em>
+                               <br>
+                            <strong>Author</strong>: <em>${posts[i].author.name}</em>`;
                 postsContainer.appendChild(p);
             }
         }
         fetchPosts();
+        async function addPost() {
+            const body = {
+                name: 'Biman',
+                email: 'biman@prisma.io',
+                posts: {
+                    create: {
+                        title: "Post 2",
+                        content: 'Post 2 content.'
+                    }
+                }
+            };
+            // console.log(JSON.stringify(body));
+            try {
+
+                const response = await fetch('http://localhost:3000/post', {
+                    method: 'POST',
+                    headers: {'content-type': 'application/json'},
+                    body: JSON.stringify(body)
+                });
+                if (!response.ok) {
+                    console.error('Failed to add post.');
+                    return;
+                }
+                const result = await response.json();
+                console.log(result.message);
+            } catch (e) {
+                console.error(e);
+                return;
+            }
+        }
     </script>
 </body>
 </html>
