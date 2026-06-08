@@ -16,7 +16,7 @@ int main()
     socklen_t longueurAdresse;
     char messageEnvoi[LG_MESSAGE];
     char messageRecu[LG_MESSAGE];
-    int ecris, lus;
+    int ecrits, lus;
     // int retour;
 
     //--- Début de l'étape numéro 1:
@@ -68,9 +68,9 @@ int main()
     memset(messageEnvoi, 0x0, LG_MESSAGE * sizeof(char));
     memset(messageRecu, 0x0, LG_MESSAGE * sizeof(char));
 
-    sprintf(messageEnvoi, "Hello World!\n");
-    ecris = write(descripteurSocket, messageEnvoi, strlen(messageEnvoi)); // message à TAILLE variable
-    switch (ecris)
+    sprintf(messageEnvoi, "Hello World !\n");
+    ecrits = write(descripteurSocket, messageEnvoi, strlen(messageEnvoi)); // message à TAILLE variable
+    switch (ecrits)
     {
         case -1: /* une erreur */
             perror("write");
@@ -81,7 +81,7 @@ int main()
             close(descripteurSocket);
             return 0;
         default: /* envoie de n octets */
-            printf("Message %s envoyé avec succès (%d octets)\n\n", messageEnvoi, ecris);
+            printf("Message %s envoyé avec succès (%d octets)\n\n", messageEnvoi, ecrits);
     }
 
     /* Reception des données du serveur */
