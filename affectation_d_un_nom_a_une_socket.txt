@@ -1,0 +1,2 @@
+Est l'opération de liaison dune scoket à une 
+adresse et un port avec la fonction bind()

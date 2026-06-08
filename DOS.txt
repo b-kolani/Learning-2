@@ -1,0 +1,7 @@
+Deny Of Service décrit une situation 
+où un serveur est dans l'impossibilité de 
+traiter de nouvelles demandes de connexion
+lorsque sa file d'attente (queue) est pleine.
+Par exemple avec int listen(int sockfd, int backlog);
+Ici backlog est le nombre max de demandes 
+de connexion dans la file d'attente pouvant être traitées.
