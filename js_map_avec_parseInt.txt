@@ -1,0 +1,66 @@
+Exemple:
+    </> JavaScript
+    ["10", "10", "10"].map(parseInt)
+Résultat:
+    </> JavaScript
+    [10, NaN, 2]
+
+Pourquoi ça arrive ?
+Le piège vient du fait que map et parseInt n'ont pas la 
+même signature.
+
+Comment fonctionne map 
+    </> JavaScript
+    array.map(callback(element, index))
+-> map appelle notre fonction avec:
+1. élément 
+2. index 
+
+Comment fonctionne parseInt 
+    </> JavaScript
+    parseInt(string, radix)
+-> parseInt prend:
+1. Une chaîne 
+2. la base (radix)
+
+Donc ce que fait réellement Js 
+    </> JavaScript 
+    parseInt("10", 0) // index = 0
+    parseInt("10", 1) // index = 1 invalide base 
+    parseInt("10", 2) // base 2
+
+Calcul détaillé 
+1er élément
+    </> JavaScript
+    parseInt("10", 0)
+    -> base 0 = auto (base 10)
+    résultat: 10
+
+2ème élément
+    </> JavaScript
+    parseInt("10", 1)
+    -> base 1 est invalide 
+    résultat: NaN 
+
+3ème élément
+    </> JavaScript
+    parseInt("10", 2)
+    -> base 2 (binaire)
+    "10" en base 2 = 2 en base 10
+    résultat: 2  
+
+Bonne pratique
+
+Mauvais:
+    </> JavaScript
+    ["10", "10", "10"].map(parseInt)
+Correct:
+    ["10", "10", "10"].map(x => parseInt(x))
+Ou mieux:
+    </> JavaScript
+    ["10", "10", "10"].map(Number)
+
+Le bug vient du fait que:
+- map passe (value, index)
+- parseInt attend (string, base)
+Donc l'index devient la base.
