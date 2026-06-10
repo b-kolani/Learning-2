@@ -1,0 +1,2 @@
+JAR: Java ARchive 
+WAR: Web Application Archive 

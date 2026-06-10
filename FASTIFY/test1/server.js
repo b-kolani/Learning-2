@@ -1,17 +1,25 @@
+// ESM 
+// server.js 
+
 import Fastify from 'fastify';
+import dbConnector from './our-db-connector.js';
+import firstRoute from './our-first-route.js';
+
+/**
+ * @type {import('fastify').FastifyInstance} Instance of Fastify
+ */
 
 const fastify = Fastify({
     logger: true
 });
 
-fastify.get('/', function (request, reply) {
-    reply.send({ hello: 'World' });
-});
+fastify.register(dbConnector);
+fastify.register(firstRoute);
 
-fastify.listen({ port: 3000 }, function (err, address) {
+fastify.listen({ port: 3000 }, async function (err, address) {
     if (err) {
         fastify.log.error(err);
         process.exit(1);
     }
-    fastify.log.info(`Server listening on ${address}`);
-});
+    // Server is now listening on ${address}
+})

@@ -1,0 +1,9 @@
+Ici on a pas de frontend mais on peut 
+toujours tester notre serveur en utilisant 
+curl:
+    curl http://localhost:3000
+    curl htpp://localhost:3000/animals pour récupérer lees animals de la db 
+    curl http://localhost:3000/animals/cat par exemple pour récupérer un animal avec 
+    comme valeur cat 
+    curl -X POST http://localhost:3000/animals -H "Content-Type: application/json" -d '{"animal": "pig"}'
+    poiur faire un POST
