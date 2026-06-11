@@ -1,0 +1,36 @@
+Un package Python est simplement un dossier 
+qui contient du code Python et que Python 
+peut importer comme un module.
+Exemple:
+mon_projet/
+└── utils/
+    ├── __init__.py
+    ├── maths.py
+    └── strings.py
+utils est un package Python.
+
+On peut alors écrire:
+    </> Python 
+    from utils.maths import addition 
+
+ou: 
+    </> Python
+    import utils.strings 
+
+Les packages permettent de regrouper les fichiers par thème:
+projet/
+├── database/
+├── network/
+├── auth/
+└── ui/
+
+Traditionnellement, un dossier devient un package lorsqu'il 
+contient:
+    __init__.py 
+
+Sa présence indique à Python:
+    "Ce dossier doit être traité comme un package."
+
+Différenec entre module et package
+Module: un simple fichier 
+Package: dossier contenanat plusieurs modules

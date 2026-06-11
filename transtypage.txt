@@ -1,0 +1,1 @@
+conversion d'un type primitif en un autre dans un langage de programmation.
