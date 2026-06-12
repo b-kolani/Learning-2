@@ -1,0 +1,40 @@
+let a une portée de bloc :
+    </> JavaScript
+    for (let i = 0; i <= 2; i++) {
+        console.log(i);
+    }
+    // Ici ReferenceError: i not defined
+    console.log(i);
+Daans un callback:
+    </> JavaScript:
+    for (let i = 0; i <= 2; i++) {
+        setTimeout(() => console.log(i), 1000);
+    }
+JS crée en quelque sorte quelque chose comme ça:
+    </> JavaScript
+    /// Chaque timer crée sa propre variable i baasée sur la valeur précédente
+    {
+        let i = 0;
+        setTimeout(() => console.log(i), 1000);
+    }
+    {
+        let i = 1;
+        setTimeout(() => console.log(i), 1000);
+    }
+    {
+        let i = 2;
+        setTimeout(() => console.log(i), 1000);
+    }
+
+Par contre avec var la variable i a une portée globale:
+    </> JavaScript
+    for (let i = 0; i <= 2; i++) {
+        console.log(i);
+    }
+    console.log(i); // ici c'est possible 
+Dans un callback:
+    </> JavaScript
+    for (let i = 0; i <= 2; i++) {
+        setTimeout(() => console.log(i), 1000);
+    }
+Ici chaque timer a la même valeur de la variable i donc  i = 2;

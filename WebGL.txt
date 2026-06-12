@@ -1,0 +1,18 @@
+WebGL(Web Graphics Library) est une technologie qui permet 
+d'utiliser directement la carte graphique (GPU) depuis 
+le navigateur pour dessiner des graphiques 2D et surtout 3D. 
+
+Sans WebGL, le navigateur dessine principalement avec 
+le processeur (CPU). Avec WebGL, les calculs 
+graphiques sont délégués au GPU, beaucoup plus rapide  
+pour ce type de travail. 
+
+Exemple concret
+Quand on joue à un jeu 3D dans le navigateur:
+- Minecraft dans le navigateur
+- Google Earth Web 
+- visualisations 3D 
+- certains modèles d'IA dans TensorFlow.js 
+ils utilisent souvent WebGL. 
+
+

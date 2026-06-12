@@ -1,0 +1,23 @@
+{% extends 'master.html' %}
+
+{% block title %}
+  Wrong address
+{% endblock %}
+
+{% block content %}
+  <h1>Oooops!</h1>
+
+  <h2>I cannot find the file you requested!</h2>
+{% endblock %}
+
+{% comment %}Or we can use a plain HTML like below:{% endcomment %}
+{% comment %} <!DOCTYPE html>
+<html>
+  <head>
+    <title>Wrong address</title>
+  </head>
+  <body>
+    <h1>Oooops!</h1>
+    <h2>I cannot find the file you requested!</h2>
+  </body>
+</html> {% endcomment %}
